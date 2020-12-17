@@ -1,0 +1,26 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/incvis/Documents/Projects/C/data_structures/main.c
+stdio.h
+-
+malloc.h
+-
+single_linked_list.h
+/home/incvis/Documents/Projects/C/data_structures/single_linked_list.h
+
+/home/incvis/Documents/Projects/C/data_structures/single_linked_list.c
+malloc.h
+-
+single_linked_list.h
+/home/incvis/Documents/Projects/C/data_structures/single_linked_list.h
+
+/home/incvis/Documents/Projects/C/data_structures/single_linked_list.h
+stdio.h
+-
+

@@ -1,0 +1,3 @@
+/home/incvis/Documents/Projects/C/data_structures/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/incvis/Documents/Projects/C/data_structures/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/incvis/Documents/Projects/C/data_structures/cmake-build-debug/CMakeFiles/data_structures.dir
