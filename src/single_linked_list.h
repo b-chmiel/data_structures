@@ -10,20 +10,32 @@
 #endif //DATA_STRUCTURES_SINGLE_LINKED_LIST_H
 
 
-typedef struct node_t {
+struct node {
     int data;
-    struct node_t *next;
-} node_t;
+    struct node *next;
+};
 
+void add(struct node **head, int data);
 
-void add_at(int position, int data, node_t **head);
+void add_many(struct node **head, int number_of_args, ...);
 
-int get_at(int index, node_t *head);
+void add_at(int index, int data, struct node **head);
 
-bool delete_by_content(int item, node_t **head);
+int get_at(int index, struct node *head);
 
-bool delete_by_index(int index, node_t **head);
+void split_into_two(struct node *head, struct node **first, struct node **second);
 
-void delete_list(node_t **list);
+//void merge_sorted(struct node **head,
+//             struct node *first,
+//             struct node *second,
+//             int(*comparator)(const void *, const void *));
+//
+//void merge_sort(struct node **head, int(*comparator)(const void *, const void *));
 
-void print_list(node_t *head);
+bool delete_by_content(int item, struct node **head);
+
+bool delete_by_index(int index, struct node **head);
+
+void delete_list(struct node **list);
+
+void print_list(struct node *head);
