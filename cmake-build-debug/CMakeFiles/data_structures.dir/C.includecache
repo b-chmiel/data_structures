@@ -7,10 +7,8 @@
 #IncludeRegexTransform: 
 
 /home/incvis/Documents/Projects/C/data_structures/main.c
-stdio.h
--
-src/single_linked_list.h
-/home/incvis/Documents/Projects/C/data_structures/src/single_linked_list.h
+test/test_single_linked_list.h
+/home/incvis/Documents/Projects/C/data_structures/test/test_single_linked_list.h
 
 /home/incvis/Documents/Projects/C/data_structures/src/single_linked_list.c
 malloc.h
@@ -23,4 +21,10 @@ single_linked_list.h
 /home/incvis/Documents/Projects/C/data_structures/src/single_linked_list.h
 stdio.h
 -
+
+/home/incvis/Documents/Projects/C/data_structures/test/test_single_linked_list.c
+../src/single_linked_list.h
+/home/incvis/Documents/Projects/C/data_structures/src/single_linked_list.h
+
+/home/incvis/Documents/Projects/C/data_structures/test/test_single_linked_list.h
 

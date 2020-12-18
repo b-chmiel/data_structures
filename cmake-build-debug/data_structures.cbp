@@ -5,7 +5,7 @@
 		<Option title="data_structures"/>
 		<Option makefile_is_custom="1"/>
 		<Option compiler="gcc"/>
-		<Option virtualFolders="CMake Files\;"/>
+		<Option virtualFolders="CMake Files\;CMake Files\src\;CMake Files\test\;CMake Files\test\googletest\;CMake Files\test\googletest\googlemock\;CMake Files\test\googletest\googlemock\cmake\;CMake Files\test\googletest\googletest\;CMake Files\test\googletest\googletest\cmake\;"/>
 		<Build>
 			<Target title="all">
 				<Option working_dir="/home/incvis/Documents/Projects/C/data_structures/cmake-build-debug"/>
@@ -17,11 +17,61 @@
 					<DistClean command="/usr/bin/make -j8 -f &quot;/home/incvis/Documents/Projects/C/data_structures/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
-			<Target title="rebuild_cache">
+			<Target title="install/strip">
 				<Option working_dir="/home/incvis/Documents/Projects/C/data_structures/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/home/incvis/Documents/Projects/C/data_structures/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/incvis/Documents/Projects/C/data_structures/cmake-build-debug/Makefile&quot;  VERBOSE=1 install/strip"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/incvis/Documents/Projects/C/data_structures/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/incvis/Documents/Projects/C/data_structures/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/incvis/Documents/Projects/C/data_structures/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="install/local">
+				<Option working_dir="/home/incvis/Documents/Projects/C/data_structures/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/incvis/Documents/Projects/C/data_structures/cmake-build-debug/Makefile&quot;  VERBOSE=1 install/local"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/incvis/Documents/Projects/C/data_structures/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/incvis/Documents/Projects/C/data_structures/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/incvis/Documents/Projects/C/data_structures/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="src_run">
+				<Option output="/home/incvis/Documents/Projects/C/data_structures/cmake-build-debug/src_run" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/incvis/Documents/Projects/C/data_structures/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/incvis/Documents/Projects/C/data_structures/src"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/incvis/Documents/Projects/C/data_structures/cmake-build-debug/Makefile&quot;  VERBOSE=1 src_run"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/incvis/Documents/Projects/C/data_structures/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/incvis/Documents/Projects/C/data_structures/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/incvis/Documents/Projects/C/data_structures/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="src_run/fast">
+				<Option output="/home/incvis/Documents/Projects/C/data_structures/cmake-build-debug/src_run" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/incvis/Documents/Projects/C/data_structures/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/incvis/Documents/Projects/C/data_structures/src"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/incvis/Documents/Projects/C/data_structures/cmake-build-debug/Makefile&quot;  VERBOSE=1 src_run/fast"/>
 					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/incvis/Documents/Projects/C/data_structures/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
 					<Clean command="/usr/bin/make -j8 -f &quot;/home/incvis/Documents/Projects/C/data_structures/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 					<DistClean command="/usr/bin/make -j8 -f &quot;/home/incvis/Documents/Projects/C/data_structures/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
@@ -37,56 +87,364 @@
 					<DistClean command="/usr/bin/make -j8 -f &quot;/home/incvis/Documents/Projects/C/data_structures/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
-			<Target title="data_structures">
-				<Option output="/home/incvis/Documents/Projects/C/data_structures/cmake-build-debug/data_structures" prefix_auto="0" extension_auto="0"/>
+			<Target title="rebuild_cache">
 				<Option working_dir="/home/incvis/Documents/Projects/C/data_structures/cmake-build-debug"/>
-				<Option object_output="./"/>
-				<Option type="1"/>
-				<Option compiler="gcc"/>
-				<Compiler>
-					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
-					<Add directory="/usr/local/include"/>
-					<Add directory="/usr/include/x86_64-linux-gnu"/>
-					<Add directory="/usr/include"/>
-				</Compiler>
+				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/home/incvis/Documents/Projects/C/data_structures/cmake-build-debug/Makefile&quot;  VERBOSE=1 data_structures"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/incvis/Documents/Projects/C/data_structures/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
 					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/incvis/Documents/Projects/C/data_structures/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
 					<Clean command="/usr/bin/make -j8 -f &quot;/home/incvis/Documents/Projects/C/data_structures/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 					<DistClean command="/usr/bin/make -j8 -f &quot;/home/incvis/Documents/Projects/C/data_structures/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
-			<Target title="data_structures/fast">
-				<Option output="/home/incvis/Documents/Projects/C/data_structures/cmake-build-debug/data_structures" prefix_auto="0" extension_auto="0"/>
+			<Target title="install">
 				<Option working_dir="/home/incvis/Documents/Projects/C/data_structures/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/incvis/Documents/Projects/C/data_structures/cmake-build-debug/Makefile&quot;  VERBOSE=1 install"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/incvis/Documents/Projects/C/data_structures/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/incvis/Documents/Projects/C/data_structures/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/incvis/Documents/Projects/C/data_structures/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="list_install_components">
+				<Option working_dir="/home/incvis/Documents/Projects/C/data_structures/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/incvis/Documents/Projects/C/data_structures/cmake-build-debug/Makefile&quot;  VERBOSE=1 list_install_components"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/incvis/Documents/Projects/C/data_structures/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/incvis/Documents/Projects/C/data_structures/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/incvis/Documents/Projects/C/data_structures/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="src">
+				<Option output="/home/incvis/Documents/Projects/C/data_structures/cmake-build-debug/src/libsrc.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/incvis/Documents/Projects/C/data_structures/cmake-build-debug/src"/>
 				<Option object_output="./"/>
-				<Option type="1"/>
+				<Option type="2"/>
 				<Option compiler="gcc"/>
 				<Compiler>
+					<Add directory="/home/incvis/Documents/Projects/C/data_structures/src"/>
 					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
 					<Add directory="/usr/local/include"/>
 					<Add directory="/usr/include/x86_64-linux-gnu"/>
 					<Add directory="/usr/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/home/incvis/Documents/Projects/C/data_structures/cmake-build-debug/Makefile&quot;  VERBOSE=1 data_structures/fast"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/incvis/Documents/Projects/C/data_structures/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/home/incvis/Documents/Projects/C/data_structures/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/home/incvis/Documents/Projects/C/data_structures/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/incvis/Documents/Projects/C/data_structures/cmake-build-debug/src/Makefile&quot;  VERBOSE=1 src"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/incvis/Documents/Projects/C/data_structures/cmake-build-debug/src/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/incvis/Documents/Projects/C/data_structures/cmake-build-debug/src/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/incvis/Documents/Projects/C/data_structures/cmake-build-debug/src/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="src/fast">
+				<Option output="/home/incvis/Documents/Projects/C/data_structures/cmake-build-debug/src/libsrc.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/incvis/Documents/Projects/C/data_structures/cmake-build-debug/src"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/incvis/Documents/Projects/C/data_structures/src"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/incvis/Documents/Projects/C/data_structures/cmake-build-debug/src/Makefile&quot;  VERBOSE=1 src/fast"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/incvis/Documents/Projects/C/data_structures/cmake-build-debug/src/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/incvis/Documents/Projects/C/data_structures/cmake-build-debug/src/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/incvis/Documents/Projects/C/data_structures/cmake-build-debug/src/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="Google_Tests_run">
+				<Option output="/home/incvis/Documents/Projects/C/data_structures/cmake-build-debug/test/Google_Tests_run" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/incvis/Documents/Projects/C/data_structures/cmake-build-debug/test"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/incvis/Documents/Projects/C/data_structures/src"/>
+					<Add directory="/home/incvis/Documents/Projects/C/data_structures/test/googletest/googletest/include"/>
+					<Add directory="/home/incvis/Documents/Projects/C/data_structures/test/googletest/googletest"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/incvis/Documents/Projects/C/data_structures/cmake-build-debug/test/Makefile&quot;  VERBOSE=1 Google_Tests_run"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/incvis/Documents/Projects/C/data_structures/cmake-build-debug/test/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/incvis/Documents/Projects/C/data_structures/cmake-build-debug/test/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/incvis/Documents/Projects/C/data_structures/cmake-build-debug/test/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="Google_Tests_run/fast">
+				<Option output="/home/incvis/Documents/Projects/C/data_structures/cmake-build-debug/test/Google_Tests_run" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/incvis/Documents/Projects/C/data_structures/cmake-build-debug/test"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/incvis/Documents/Projects/C/data_structures/src"/>
+					<Add directory="/home/incvis/Documents/Projects/C/data_structures/test/googletest/googletest/include"/>
+					<Add directory="/home/incvis/Documents/Projects/C/data_structures/test/googletest/googletest"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/incvis/Documents/Projects/C/data_structures/cmake-build-debug/test/Makefile&quot;  VERBOSE=1 Google_Tests_run/fast"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/incvis/Documents/Projects/C/data_structures/cmake-build-debug/test/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/incvis/Documents/Projects/C/data_structures/cmake-build-debug/test/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/incvis/Documents/Projects/C/data_structures/cmake-build-debug/test/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="gmock_main">
+				<Option output="/home/incvis/Documents/Projects/C/data_structures/cmake-build-debug/lib/libgmock_maind.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/incvis/Documents/Projects/C/data_structures/cmake-build-debug/test/googletest/googlemock"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/incvis/Documents/Projects/C/data_structures/src"/>
+					<Add directory="/home/incvis/Documents/Projects/C/data_structures/test/googletest/googlemock/include"/>
+					<Add directory="/home/incvis/Documents/Projects/C/data_structures/test/googletest/googlemock"/>
+					<Add directory="/home/incvis/Documents/Projects/C/data_structures/test/googletest/googletest/include"/>
+					<Add directory="/home/incvis/Documents/Projects/C/data_structures/test/googletest/googletest"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/incvis/Documents/Projects/C/data_structures/cmake-build-debug/test/googletest/googlemock/Makefile&quot;  VERBOSE=1 gmock_main"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/incvis/Documents/Projects/C/data_structures/cmake-build-debug/test/googletest/googlemock/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/incvis/Documents/Projects/C/data_structures/cmake-build-debug/test/googletest/googlemock/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/incvis/Documents/Projects/C/data_structures/cmake-build-debug/test/googletest/googlemock/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="gmock_main/fast">
+				<Option output="/home/incvis/Documents/Projects/C/data_structures/cmake-build-debug/lib/libgmock_maind.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/incvis/Documents/Projects/C/data_structures/cmake-build-debug/test/googletest/googlemock"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/incvis/Documents/Projects/C/data_structures/src"/>
+					<Add directory="/home/incvis/Documents/Projects/C/data_structures/test/googletest/googlemock/include"/>
+					<Add directory="/home/incvis/Documents/Projects/C/data_structures/test/googletest/googlemock"/>
+					<Add directory="/home/incvis/Documents/Projects/C/data_structures/test/googletest/googletest/include"/>
+					<Add directory="/home/incvis/Documents/Projects/C/data_structures/test/googletest/googletest"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/incvis/Documents/Projects/C/data_structures/cmake-build-debug/test/googletest/googlemock/Makefile&quot;  VERBOSE=1 gmock_main/fast"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/incvis/Documents/Projects/C/data_structures/cmake-build-debug/test/googletest/googlemock/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/incvis/Documents/Projects/C/data_structures/cmake-build-debug/test/googletest/googlemock/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/incvis/Documents/Projects/C/data_structures/cmake-build-debug/test/googletest/googlemock/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="gmock">
+				<Option output="/home/incvis/Documents/Projects/C/data_structures/cmake-build-debug/lib/libgmockd.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/incvis/Documents/Projects/C/data_structures/cmake-build-debug/test/googletest/googlemock"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/incvis/Documents/Projects/C/data_structures/src"/>
+					<Add directory="/home/incvis/Documents/Projects/C/data_structures/test/googletest/googlemock/include"/>
+					<Add directory="/home/incvis/Documents/Projects/C/data_structures/test/googletest/googlemock"/>
+					<Add directory="/home/incvis/Documents/Projects/C/data_structures/test/googletest/googletest/include"/>
+					<Add directory="/home/incvis/Documents/Projects/C/data_structures/test/googletest/googletest"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/incvis/Documents/Projects/C/data_structures/cmake-build-debug/test/googletest/googlemock/Makefile&quot;  VERBOSE=1 gmock"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/incvis/Documents/Projects/C/data_structures/cmake-build-debug/test/googletest/googlemock/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/incvis/Documents/Projects/C/data_structures/cmake-build-debug/test/googletest/googlemock/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/incvis/Documents/Projects/C/data_structures/cmake-build-debug/test/googletest/googlemock/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="gmock/fast">
+				<Option output="/home/incvis/Documents/Projects/C/data_structures/cmake-build-debug/lib/libgmockd.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/incvis/Documents/Projects/C/data_structures/cmake-build-debug/test/googletest/googlemock"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/incvis/Documents/Projects/C/data_structures/src"/>
+					<Add directory="/home/incvis/Documents/Projects/C/data_structures/test/googletest/googlemock/include"/>
+					<Add directory="/home/incvis/Documents/Projects/C/data_structures/test/googletest/googlemock"/>
+					<Add directory="/home/incvis/Documents/Projects/C/data_structures/test/googletest/googletest/include"/>
+					<Add directory="/home/incvis/Documents/Projects/C/data_structures/test/googletest/googletest"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/incvis/Documents/Projects/C/data_structures/cmake-build-debug/test/googletest/googlemock/Makefile&quot;  VERBOSE=1 gmock/fast"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/incvis/Documents/Projects/C/data_structures/cmake-build-debug/test/googletest/googlemock/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/incvis/Documents/Projects/C/data_structures/cmake-build-debug/test/googletest/googlemock/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/incvis/Documents/Projects/C/data_structures/cmake-build-debug/test/googletest/googlemock/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="gtest_main">
+				<Option output="/home/incvis/Documents/Projects/C/data_structures/cmake-build-debug/lib/libgtest_maind.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/incvis/Documents/Projects/C/data_structures/cmake-build-debug/test/googletest/googletest"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/incvis/Documents/Projects/C/data_structures/src"/>
+					<Add directory="/home/incvis/Documents/Projects/C/data_structures/test/googletest/googletest/include"/>
+					<Add directory="/home/incvis/Documents/Projects/C/data_structures/test/googletest/googletest"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/incvis/Documents/Projects/C/data_structures/cmake-build-debug/test/googletest/googletest/Makefile&quot;  VERBOSE=1 gtest_main"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/incvis/Documents/Projects/C/data_structures/cmake-build-debug/test/googletest/googletest/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/incvis/Documents/Projects/C/data_structures/cmake-build-debug/test/googletest/googletest/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/incvis/Documents/Projects/C/data_structures/cmake-build-debug/test/googletest/googletest/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="gtest_main/fast">
+				<Option output="/home/incvis/Documents/Projects/C/data_structures/cmake-build-debug/lib/libgtest_maind.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/incvis/Documents/Projects/C/data_structures/cmake-build-debug/test/googletest/googletest"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/incvis/Documents/Projects/C/data_structures/src"/>
+					<Add directory="/home/incvis/Documents/Projects/C/data_structures/test/googletest/googletest/include"/>
+					<Add directory="/home/incvis/Documents/Projects/C/data_structures/test/googletest/googletest"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/incvis/Documents/Projects/C/data_structures/cmake-build-debug/test/googletest/googletest/Makefile&quot;  VERBOSE=1 gtest_main/fast"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/incvis/Documents/Projects/C/data_structures/cmake-build-debug/test/googletest/googletest/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/incvis/Documents/Projects/C/data_structures/cmake-build-debug/test/googletest/googletest/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/incvis/Documents/Projects/C/data_structures/cmake-build-debug/test/googletest/googletest/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="gtest">
+				<Option output="/home/incvis/Documents/Projects/C/data_structures/cmake-build-debug/lib/libgtestd.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/incvis/Documents/Projects/C/data_structures/cmake-build-debug/test/googletest/googletest"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/incvis/Documents/Projects/C/data_structures/src"/>
+					<Add directory="/home/incvis/Documents/Projects/C/data_structures/test/googletest/googletest/include"/>
+					<Add directory="/home/incvis/Documents/Projects/C/data_structures/test/googletest/googletest"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/incvis/Documents/Projects/C/data_structures/cmake-build-debug/test/googletest/googletest/Makefile&quot;  VERBOSE=1 gtest"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/incvis/Documents/Projects/C/data_structures/cmake-build-debug/test/googletest/googletest/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/incvis/Documents/Projects/C/data_structures/cmake-build-debug/test/googletest/googletest/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/incvis/Documents/Projects/C/data_structures/cmake-build-debug/test/googletest/googletest/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="gtest/fast">
+				<Option output="/home/incvis/Documents/Projects/C/data_structures/cmake-build-debug/lib/libgtestd.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/incvis/Documents/Projects/C/data_structures/cmake-build-debug/test/googletest/googletest"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/incvis/Documents/Projects/C/data_structures/src"/>
+					<Add directory="/home/incvis/Documents/Projects/C/data_structures/test/googletest/googletest/include"/>
+					<Add directory="/home/incvis/Documents/Projects/C/data_structures/test/googletest/googletest"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/incvis/Documents/Projects/C/data_structures/cmake-build-debug/test/googletest/googletest/Makefile&quot;  VERBOSE=1 gtest/fast"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/incvis/Documents/Projects/C/data_structures/cmake-build-debug/test/googletest/googletest/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/incvis/Documents/Projects/C/data_structures/cmake-build-debug/test/googletest/googletest/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/incvis/Documents/Projects/C/data_structures/cmake-build-debug/test/googletest/googletest/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 		</Build>
 		<Unit filename="/home/incvis/Documents/Projects/C/data_structures/main.c">
-			<Option target="data_structures"/>
+			<Option target="src_run"/>
 		</Unit>
 		<Unit filename="/home/incvis/Documents/Projects/C/data_structures/src/single_linked_list.c">
-			<Option target="data_structures"/>
+			<Option target="src"/>
 		</Unit>
 		<Unit filename="/home/incvis/Documents/Projects/C/data_structures/src/single_linked_list.h">
-			<Option target="data_structures"/>
+			<Option target="src"/>
+		</Unit>
+		<Unit filename="/home/incvis/Documents/Projects/C/data_structures/test/googletest/googlemock/src/gmock-all.cc">
+			<Option target="gmock"/>
+		</Unit>
+		<Unit filename="/home/incvis/Documents/Projects/C/data_structures/test/googletest/googlemock/src/gmock_main.cc">
+			<Option target="gmock_main"/>
+		</Unit>
+		<Unit filename="/home/incvis/Documents/Projects/C/data_structures/test/googletest/googletest/src/gtest-all.cc">
+			<Option target="gtest"/>
+		</Unit>
+		<Unit filename="/home/incvis/Documents/Projects/C/data_structures/test/googletest/googletest/src/gtest_main.cc">
+			<Option target="gtest_main"/>
+		</Unit>
+		<Unit filename="/home/incvis/Documents/Projects/C/data_structures/test/test_single_linked_list.cpp">
+			<Option target="Google_Tests_run"/>
 		</Unit>
 		<Unit filename="/home/incvis/Documents/Projects/C/data_structures/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+		<Unit filename="/home/incvis/Documents/Projects/C/data_structures/src/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\src\"/>
+		</Unit>
+		<Unit filename="/home/incvis/Documents/Projects/C/data_structures/test/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\test\"/>
+		</Unit>
+		<Unit filename="/home/incvis/Documents/Projects/C/data_structures/test/googletest/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\test\googletest\"/>
+		</Unit>
+		<Unit filename="/home/incvis/Documents/Projects/C/data_structures/test/googletest/googlemock/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\test\googletest\googlemock\"/>
+		</Unit>
+		<Unit filename="/home/incvis/Documents/Projects/C/data_structures/test/googletest/googlemock/cmake/gmock.pc.in">
+			<Option virtualFolder="CMake Files\test\googletest\googlemock\cmake\"/>
+		</Unit>
+		<Unit filename="/home/incvis/Documents/Projects/C/data_structures/test/googletest/googlemock/cmake/gmock_main.pc.in">
+			<Option virtualFolder="CMake Files\test\googletest\googlemock\cmake\"/>
+		</Unit>
+		<Unit filename="/home/incvis/Documents/Projects/C/data_structures/test/googletest/googletest/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\test\googletest\googletest\"/>
+		</Unit>
+		<Unit filename="/home/incvis/Documents/Projects/C/data_structures/test/googletest/googletest/cmake/Config.cmake.in">
+			<Option virtualFolder="CMake Files\test\googletest\googletest\cmake\"/>
+		</Unit>
+		<Unit filename="/home/incvis/Documents/Projects/C/data_structures/test/googletest/googletest/cmake/gtest.pc.in">
+			<Option virtualFolder="CMake Files\test\googletest\googletest\cmake\"/>
+		</Unit>
+		<Unit filename="/home/incvis/Documents/Projects/C/data_structures/test/googletest/googletest/cmake/gtest_main.pc.in">
+			<Option virtualFolder="CMake Files\test\googletest\googletest\cmake\"/>
+		</Unit>
+		<Unit filename="/home/incvis/Documents/Projects/C/data_structures/test/googletest/googletest/cmake/internal_utils.cmake">
+			<Option virtualFolder="CMake Files\test\googletest\googletest\cmake\"/>
 		</Unit>
 	</Project>
 </CodeBlocks_project_file>

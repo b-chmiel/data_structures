@@ -4,6 +4,7 @@
 
 #include <malloc.h>
 #include <limits.h>
+#include <stdbool.h>
 #include "single_linked_list.h"
 
 void add_at(int position, int data, node_t **head)
@@ -62,7 +63,7 @@ int get_at(int index, node_t *head)
         return temp->data;
 }
 
-void delete_by_content(int data, node_t **head)
+bool delete_by_content(int data, node_t **head)
 {
         node_t *prev = NULL;
         node_t *curr = *head;
@@ -73,23 +74,53 @@ void delete_by_content(int data, node_t **head)
         }
 
         if (curr == NULL) {
-                return;
+                return false;
         }
 
         if (prev == NULL) {
                 *head = curr->next;
                 free(curr);
-                return;
+                return true;
         }
 
         if (curr->next == NULL) {
                 prev->next = NULL;
                 free(curr);
-                return;
+                return true;
         }
 
         prev->next = curr->next;
         free(curr);
+        return true;
+}
+
+bool delete_by_index(int index, node_t **head)
+{
+        if (index < 0)
+                return false;
+
+        node_t *prev = NULL;
+        node_t *curr = *head;
+
+        while (curr != NULL && index > 0) {
+                prev = curr;
+                curr = curr->next;
+                index--;
+        }
+
+        if (curr == NULL) {
+                return false;
+        }
+
+        if (prev == NULL) {
+                *head = curr->next;
+                free(curr);
+                return true;
+        }
+
+        prev->next = curr->next;
+        free(curr);
+        return true;
 }
 
 void delete_list(node_t **head)
@@ -102,34 +133,6 @@ void delete_list(node_t **head)
         }
 }
 
-void delete_by_index(int index, node_t **head)
-{
-        if (index < 0)
-                return;
-
-        node_t *prev = NULL;
-        node_t *curr = *head;
-
-        while (curr != NULL && index > 0) {
-                prev = curr;
-                curr = curr->next;
-                index--;
-        }
-
-        if (curr == NULL) {
-                return;
-        }
-
-        if (prev == NULL) {
-                *head = curr->next;
-                free(curr);
-                return;
-        }
-
-        prev->next = curr->next;
-        free(curr);
-}
-
 void print_list(node_t *head)
 {
         node_t *temp = head;
@@ -140,4 +143,3 @@ void print_list(node_t *head)
         }
         printf("\n");
 }
-

@@ -20,12 +20,10 @@ void add_at(int position, int data, node_t **head);
 
 int get_at(int index, node_t *head);
 
-void print_list(node_t *head);
+bool delete_by_content(int item, node_t **head);
 
-void delete_by_content(int item, node_t **head);
-
-void delete_by_index(int index, node_t **head);
+bool delete_by_index(int index, node_t **head);
 
 void delete_list(node_t **list);
 
-
+void print_list(node_t *head);

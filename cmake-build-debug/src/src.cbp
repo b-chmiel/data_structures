@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="src"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;CMake Files\src\;CMake Files\test\;CMake Files\test\googletest\;CMake Files\test\googletest\googlemock\;CMake Files\test\googletest\googlemock\cmake\;CMake Files\test\googletest\googletest\;CMake Files\test\googletest\googletest\cmake\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/home/incvis/Documents/Projects/C/data_structures/cmake-build-debug/src"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/incvis/Documents/Projects/C/data_structures/cmake-build-debug/src/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/incvis/Documents/Projects/C/data_structures/cmake-build-debug/src/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/incvis/Documents/Projects/C/data_structures/cmake-build-debug/src/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/incvis/Documents/Projects/C/data_structures/cmake-build-debug/src/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="src">
+				<Option output="/home/incvis/Documents/Projects/C/data_structures/cmake-build-debug/src/libsrc.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/incvis/Documents/Projects/C/data_structures/cmake-build-debug/src"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/incvis/Documents/Projects/C/data_structures/src"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/incvis/Documents/Projects/C/data_structures/cmake-build-debug/src/Makefile&quot;  VERBOSE=1 src"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/incvis/Documents/Projects/C/data_structures/cmake-build-debug/src/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/incvis/Documents/Projects/C/data_structures/cmake-build-debug/src/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/incvis/Documents/Projects/C/data_structures/cmake-build-debug/src/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="src/fast">
+				<Option output="/home/incvis/Documents/Projects/C/data_structures/cmake-build-debug/src/libsrc.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/incvis/Documents/Projects/C/data_structures/cmake-build-debug/src"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/incvis/Documents/Projects/C/data_structures/src"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/incvis/Documents/Projects/C/data_structures/cmake-build-debug/src/Makefile&quot;  VERBOSE=1 src/fast"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/incvis/Documents/Projects/C/data_structures/cmake-build-debug/src/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/incvis/Documents/Projects/C/data_structures/cmake-build-debug/src/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/incvis/Documents/Projects/C/data_structures/cmake-build-debug/src/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/home/incvis/Documents/Projects/C/data_structures/src/single_linked_list.c">
+			<Option target="src"/>
+		</Unit>
+		<Unit filename="/home/incvis/Documents/Projects/C/data_structures/src/single_linked_list.h">
+			<Option target="src"/>
+		</Unit>
+		<Unit filename="/home/incvis/Documents/Projects/C/data_structures/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+		<Unit filename="/home/incvis/Documents/Projects/C/data_structures/src/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\src\"/>
+		</Unit>
+		<Unit filename="/home/incvis/Documents/Projects/C/data_structures/test/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\test\"/>
+		</Unit>
+		<Unit filename="/home/incvis/Documents/Projects/C/data_structures/test/googletest/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\test\googletest\"/>
+		</Unit>
+		<Unit filename="/home/incvis/Documents/Projects/C/data_structures/test/googletest/googlemock/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\test\googletest\googlemock\"/>
+		</Unit>
+		<Unit filename="/home/incvis/Documents/Projects/C/data_structures/test/googletest/googlemock/cmake/gmock.pc.in">
+			<Option virtualFolder="CMake Files\test\googletest\googlemock\cmake\"/>
+		</Unit>
+		<Unit filename="/home/incvis/Documents/Projects/C/data_structures/test/googletest/googlemock/cmake/gmock_main.pc.in">
+			<Option virtualFolder="CMake Files\test\googletest\googlemock\cmake\"/>
+		</Unit>
+		<Unit filename="/home/incvis/Documents/Projects/C/data_structures/test/googletest/googletest/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\test\googletest\googletest\"/>
+		</Unit>
+		<Unit filename="/home/incvis/Documents/Projects/C/data_structures/test/googletest/googletest/cmake/Config.cmake.in">
+			<Option virtualFolder="CMake Files\test\googletest\googletest\cmake\"/>
+		</Unit>
+		<Unit filename="/home/incvis/Documents/Projects/C/data_structures/test/googletest/googletest/cmake/gtest.pc.in">
+			<Option virtualFolder="CMake Files\test\googletest\googletest\cmake\"/>
+		</Unit>
+		<Unit filename="/home/incvis/Documents/Projects/C/data_structures/test/googletest/googletest/cmake/gtest_main.pc.in">
+			<Option virtualFolder="CMake Files\test\googletest\googletest\cmake\"/>
+		</Unit>
+		<Unit filename="/home/incvis/Documents/Projects/C/data_structures/test/googletest/googletest/cmake/internal_utils.cmake">
+			<Option virtualFolder="CMake Files\test\googletest\googletest\cmake\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>
