@@ -79,10 +79,10 @@
 		<Unit filename="/home/incvis/Documents/Projects/C/data_structures/main.c">
 			<Option target="data_structures"/>
 		</Unit>
-		<Unit filename="/home/incvis/Documents/Projects/C/data_structures/single_linked_list.c">
+		<Unit filename="/home/incvis/Documents/Projects/C/data_structures/src/single_linked_list.c">
 			<Option target="data_structures"/>
 		</Unit>
-		<Unit filename="/home/incvis/Documents/Projects/C/data_structures/single_linked_list.h">
+		<Unit filename="/home/incvis/Documents/Projects/C/data_structures/src/single_linked_list.h">
 			<Option target="data_structures"/>
 		</Unit>
 		<Unit filename="/home/incvis/Documents/Projects/C/data_structures/CMakeLists.txt">

@@ -1,25 +1,45 @@
 #include <stdio.h>
-#include <malloc.h>
-#include "single_linked_list.h"
+#include "src/single_linked_list.h"
+
 
 int main()
 {
-        node *head = NULL;
+        node_t *head = NULL;
 
-        head = insert(2, head);
-        head = insert(3, head);
-        head = insert(4, head);
-        head = insert(5, head);
-        head = insert(6, head);
-        head = insert(7, head);
-        head = insert(8, head);
-        head = insert(9, head);
-        print(head);
-        freeList(head);
-        print(head);
-        //printf("%d ", head->next->data);
-        //printf("%d", head->next->next->data);
-        //freeList(head);
-        //print(head);
+        for (int i = 0; i < 10; i++) {
+                add_at(i, i, &head);
+        }
+        add_at(2, 10, &head);
+        print_list(head);
+        delete_by_content(10, &head);
+        print_list(head);
+        delete_by_content(0, &head);
+        print_list(head);
+        delete_by_content(9, &head);
+        print_list(head);
+        delete_by_content(1, &head);
+        print_list(head);
+        delete_list(&head);
+        print_list(head);
+
+        printf("Delete by index\n");
+        for (int i = 0; i < 10; i++) {
+                add_at(i, i, &head);
+        }
+        print_list(head);
+        for (int i = 9; i >= 0; i--) {
+                delete_by_index(i, &head);
+        }
+        print_list(head);
+
+        printf("Get by index\n");
+        for (int i = 0; i < 10; i++) {
+                add_at(i, i, &head);
+        }
+        print_list(head);
+        printf("first item: %d\n", get_at(0, head));
+        printf("at index 4: %d\n", get_at(4, head));
+        printf("last item: %d\n", get_at(9, head));
+        print_list(head);
         return 0;
 }

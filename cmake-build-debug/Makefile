@@ -170,32 +170,32 @@ main.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/data_structures.dir/build.make CMakeFiles/data_structures.dir/main.c.s
 .PHONY : main.c.s
 
-single_linked_list.o: single_linked_list.c.o
+src/single_linked_list.o: src/single_linked_list.c.o
 
-.PHONY : single_linked_list.o
+.PHONY : src/single_linked_list.o
 
 # target to build an object file
-single_linked_list.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/data_structures.dir/build.make CMakeFiles/data_structures.dir/single_linked_list.c.o
-.PHONY : single_linked_list.c.o
+src/single_linked_list.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/data_structures.dir/build.make CMakeFiles/data_structures.dir/src/single_linked_list.c.o
+.PHONY : src/single_linked_list.c.o
 
-single_linked_list.i: single_linked_list.c.i
+src/single_linked_list.i: src/single_linked_list.c.i
 
-.PHONY : single_linked_list.i
+.PHONY : src/single_linked_list.i
 
 # target to preprocess a source file
-single_linked_list.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/data_structures.dir/build.make CMakeFiles/data_structures.dir/single_linked_list.c.i
-.PHONY : single_linked_list.c.i
+src/single_linked_list.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/data_structures.dir/build.make CMakeFiles/data_structures.dir/src/single_linked_list.c.i
+.PHONY : src/single_linked_list.c.i
 
-single_linked_list.s: single_linked_list.c.s
+src/single_linked_list.s: src/single_linked_list.c.s
 
-.PHONY : single_linked_list.s
+.PHONY : src/single_linked_list.s
 
 # target to generate assembly for a file
-single_linked_list.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/data_structures.dir/build.make CMakeFiles/data_structures.dir/single_linked_list.c.s
-.PHONY : single_linked_list.c.s
+src/single_linked_list.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/data_structures.dir/build.make CMakeFiles/data_structures.dir/src/single_linked_list.c.s
+.PHONY : src/single_linked_list.c.s
 
 # Help Target
 help:
@@ -209,9 +209,9 @@ help:
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
-	@echo "... single_linked_list.o"
-	@echo "... single_linked_list.i"
-	@echo "... single_linked_list.s"
+	@echo "... src/single_linked_list.o"
+	@echo "... src/single_linked_list.i"
+	@echo "... src/single_linked_list.s"
 .PHONY : help
 
 

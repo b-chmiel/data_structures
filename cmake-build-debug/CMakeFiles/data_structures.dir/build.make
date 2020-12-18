@@ -90,29 +90,29 @@ CMakeFiles/data_structures.dir/main.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/data_structures.dir/main.c.s"
 	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/incvis/Documents/Projects/C/data_structures/main.c -o CMakeFiles/data_structures.dir/main.c.s
 
-CMakeFiles/data_structures.dir/single_linked_list.c.o: CMakeFiles/data_structures.dir/flags.make
-CMakeFiles/data_structures.dir/single_linked_list.c.o: ../single_linked_list.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/incvis/Documents/Projects/C/data_structures/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/data_structures.dir/single_linked_list.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/data_structures.dir/single_linked_list.c.o   -c /home/incvis/Documents/Projects/C/data_structures/single_linked_list.c
+CMakeFiles/data_structures.dir/src/single_linked_list.c.o: CMakeFiles/data_structures.dir/flags.make
+CMakeFiles/data_structures.dir/src/single_linked_list.c.o: ../src/single_linked_list.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/incvis/Documents/Projects/C/data_structures/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/data_structures.dir/src/single_linked_list.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/data_structures.dir/src/single_linked_list.c.o   -c /home/incvis/Documents/Projects/C/data_structures/src/single_linked_list.c
 
-CMakeFiles/data_structures.dir/single_linked_list.c.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/data_structures.dir/single_linked_list.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/incvis/Documents/Projects/C/data_structures/single_linked_list.c > CMakeFiles/data_structures.dir/single_linked_list.c.i
+CMakeFiles/data_structures.dir/src/single_linked_list.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/data_structures.dir/src/single_linked_list.c.i"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/incvis/Documents/Projects/C/data_structures/src/single_linked_list.c > CMakeFiles/data_structures.dir/src/single_linked_list.c.i
 
-CMakeFiles/data_structures.dir/single_linked_list.c.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/data_structures.dir/single_linked_list.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/incvis/Documents/Projects/C/data_structures/single_linked_list.c -o CMakeFiles/data_structures.dir/single_linked_list.c.s
+CMakeFiles/data_structures.dir/src/single_linked_list.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/data_structures.dir/src/single_linked_list.c.s"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/incvis/Documents/Projects/C/data_structures/src/single_linked_list.c -o CMakeFiles/data_structures.dir/src/single_linked_list.c.s
 
 # Object files for target data_structures
 data_structures_OBJECTS = \
 "CMakeFiles/data_structures.dir/main.c.o" \
-"CMakeFiles/data_structures.dir/single_linked_list.c.o"
+"CMakeFiles/data_structures.dir/src/single_linked_list.c.o"
 
 # External object files for target data_structures
 data_structures_EXTERNAL_OBJECTS =
 
 data_structures: CMakeFiles/data_structures.dir/main.c.o
-data_structures: CMakeFiles/data_structures.dir/single_linked_list.c.o
+data_structures: CMakeFiles/data_structures.dir/src/single_linked_list.c.o
 data_structures: CMakeFiles/data_structures.dir/build.make
 data_structures: CMakeFiles/data_structures.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/incvis/Documents/Projects/C/data_structures/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking C executable data_structures"

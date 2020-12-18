@@ -1,1 +1,1 @@
-/usr/bin/cc -g   CMakeFiles/data_structures.dir/main.c.o CMakeFiles/data_structures.dir/single_linked_list.c.o  -o data_structures 
+/usr/bin/cc  -Wall -Wextra -g   CMakeFiles/data_structures.dir/main.c.o CMakeFiles/data_structures.dir/src/single_linked_list.c.o  -o data_structures 
