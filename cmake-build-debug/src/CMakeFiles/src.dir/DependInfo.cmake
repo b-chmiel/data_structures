@@ -4,7 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_C
-  "/home/incvis/Documents/Projects/C/data_structures/src/single_linked_list.c" "/home/incvis/Documents/Projects/C/data_structures/cmake-build-debug/src/CMakeFiles/src.dir/single_linked_list.c.o"
+  "/home/incvis/Documents/Projects/C/data_structures/src/lib/single_linked_list.c" "/home/incvis/Documents/Projects/C/data_structures/cmake-build-debug/src/CMakeFiles/src.dir/lib/single_linked_list.c.o"
   )
 set(CMAKE_C_COMPILER_ID "GNU")
 

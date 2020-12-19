@@ -1,1 +1,1 @@
-/usr/bin/cc  -Wall -Wextra -g   CMakeFiles/src_run.dir/main.c.o  -o src_run  src/libsrc.a 
+/usr/bin/cc  -Wall -Wextra -fprofile-arcs -ftest-coverage -O0 -g  -rdynamic CMakeFiles/src_run.dir/main.c.o  -o src_run  src/libsrc.a 

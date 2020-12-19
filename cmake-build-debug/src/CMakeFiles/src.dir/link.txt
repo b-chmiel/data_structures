@@ -1,2 +1,2 @@
-/usr/bin/ar qc libsrc.a  CMakeFiles/src.dir/single_linked_list.c.o
+/usr/bin/ar qc libsrc.a  CMakeFiles/src.dir/lib/single_linked_list.c.o
 /usr/bin/ranlib libsrc.a

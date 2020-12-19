@@ -1,5 +1,5 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/src.dir/single_linked_list.c.o"
+  "CMakeFiles/src.dir/lib/single_linked_list.c.o"
   "libsrc.a"
   "libsrc.pdb"
 )

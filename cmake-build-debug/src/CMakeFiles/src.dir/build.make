@@ -77,27 +77,27 @@ include src/CMakeFiles/src.dir/progress.make
 # Include the compile flags for this target's objects.
 include src/CMakeFiles/src.dir/flags.make
 
-src/CMakeFiles/src.dir/single_linked_list.c.o: src/CMakeFiles/src.dir/flags.make
-src/CMakeFiles/src.dir/single_linked_list.c.o: ../src/single_linked_list.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/incvis/Documents/Projects/C/data_structures/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object src/CMakeFiles/src.dir/single_linked_list.c.o"
-	cd /home/incvis/Documents/Projects/C/data_structures/cmake-build-debug/src && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/src.dir/single_linked_list.c.o   -c /home/incvis/Documents/Projects/C/data_structures/src/single_linked_list.c
+src/CMakeFiles/src.dir/lib/single_linked_list.c.o: src/CMakeFiles/src.dir/flags.make
+src/CMakeFiles/src.dir/lib/single_linked_list.c.o: ../src/lib/single_linked_list.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/incvis/Documents/Projects/C/data_structures/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object src/CMakeFiles/src.dir/lib/single_linked_list.c.o"
+	cd /home/incvis/Documents/Projects/C/data_structures/cmake-build-debug/src && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/src.dir/lib/single_linked_list.c.o   -c /home/incvis/Documents/Projects/C/data_structures/src/lib/single_linked_list.c
 
-src/CMakeFiles/src.dir/single_linked_list.c.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/src.dir/single_linked_list.c.i"
-	cd /home/incvis/Documents/Projects/C/data_structures/cmake-build-debug/src && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/incvis/Documents/Projects/C/data_structures/src/single_linked_list.c > CMakeFiles/src.dir/single_linked_list.c.i
+src/CMakeFiles/src.dir/lib/single_linked_list.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/src.dir/lib/single_linked_list.c.i"
+	cd /home/incvis/Documents/Projects/C/data_structures/cmake-build-debug/src && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/incvis/Documents/Projects/C/data_structures/src/lib/single_linked_list.c > CMakeFiles/src.dir/lib/single_linked_list.c.i
 
-src/CMakeFiles/src.dir/single_linked_list.c.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/src.dir/single_linked_list.c.s"
-	cd /home/incvis/Documents/Projects/C/data_structures/cmake-build-debug/src && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/incvis/Documents/Projects/C/data_structures/src/single_linked_list.c -o CMakeFiles/src.dir/single_linked_list.c.s
+src/CMakeFiles/src.dir/lib/single_linked_list.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/src.dir/lib/single_linked_list.c.s"
+	cd /home/incvis/Documents/Projects/C/data_structures/cmake-build-debug/src && /usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/incvis/Documents/Projects/C/data_structures/src/lib/single_linked_list.c -o CMakeFiles/src.dir/lib/single_linked_list.c.s
 
 # Object files for target src
 src_OBJECTS = \
-"CMakeFiles/src.dir/single_linked_list.c.o"
+"CMakeFiles/src.dir/lib/single_linked_list.c.o"
 
 # External object files for target src
 src_EXTERNAL_OBJECTS =
 
-src/libsrc.a: src/CMakeFiles/src.dir/single_linked_list.c.o
+src/libsrc.a: src/CMakeFiles/src.dir/lib/single_linked_list.c.o
 src/libsrc.a: src/CMakeFiles/src.dir/build.make
 src/libsrc.a: src/CMakeFiles/src.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/incvis/Documents/Projects/C/data_structures/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking C static library libsrc.a"

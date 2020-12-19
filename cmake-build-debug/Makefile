@@ -100,6 +100,28 @@ install/local/fast: preinstall/fast
 	/home/incvis/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/203.5981.166/bin/cmake/linux/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
 .PHONY : install/local/fast
 
+# Special rule for the target install
+install: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
+	/home/incvis/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/203.5981.166/bin/cmake/linux/bin/cmake -P cmake_install.cmake
+.PHONY : install
+
+# Special rule for the target install
+install/fast: preinstall/fast
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
+	/home/incvis/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/203.5981.166/bin/cmake/linux/bin/cmake -P cmake_install.cmake
+.PHONY : install/fast
+
+# Special rule for the target list_install_components
+list_install_components:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Available install components are: \"Unspecified\""
+.PHONY : list_install_components
+
+# Special rule for the target list_install_components
+list_install_components/fast: list_install_components
+
+.PHONY : list_install_components/fast
+
 # Special rule for the target edit_cache
 edit_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
@@ -122,27 +144,16 @@ rebuild_cache/fast: rebuild_cache
 
 .PHONY : rebuild_cache/fast
 
-# Special rule for the target install
-install: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
-	/home/incvis/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/203.5981.166/bin/cmake/linux/bin/cmake -P cmake_install.cmake
-.PHONY : install
+# Special rule for the target test
+test:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running tests..."
+	/home/incvis/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/203.5981.166/bin/cmake/linux/bin/ctest --force-new-ctest-process $(ARGS)
+.PHONY : test
 
-# Special rule for the target install
-install/fast: preinstall/fast
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
-	/home/incvis/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/203.5981.166/bin/cmake/linux/bin/cmake -P cmake_install.cmake
-.PHONY : install/fast
+# Special rule for the target test
+test/fast: test
 
-# Special rule for the target list_install_components
-list_install_components:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Available install components are: \"Unspecified\""
-.PHONY : list_install_components
-
-# Special rule for the target list_install_components
-list_install_components/fast: list_install_components
-
-.PHONY : list_install_components/fast
+.PHONY : test/fast
 
 # The main all target
 all: cmake_check_build_system
@@ -190,6 +201,32 @@ src_run/fast:
 .PHONY : src_run/fast
 
 #=============================================================================
+# Target rules for targets named gcov
+
+# Build rule for target.
+gcov: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 gcov
+.PHONY : gcov
+
+# fast build rule for target.
+gcov/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/gcov.dir/build.make CMakeFiles/gcov.dir/build
+.PHONY : gcov/fast
+
+#=============================================================================
+# Target rules for targets named lcov
+
+# Build rule for target.
+lcov: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 lcov
+.PHONY : lcov
+
+# fast build rule for target.
+lcov/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lcov.dir/build.make CMakeFiles/lcov.dir/build
+.PHONY : lcov/fast
+
+#=============================================================================
 # Target rules for targets named src
 
 # Build rule for target.
@@ -203,69 +240,56 @@ src/fast:
 .PHONY : src/fast
 
 #=============================================================================
-# Target rules for targets named Google_Tests_run
+# Target rules for targets named main
 
 # Build rule for target.
-Google_Tests_run: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 Google_Tests_run
-.PHONY : Google_Tests_run
+main: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 main
+.PHONY : main
 
 # fast build rule for target.
-Google_Tests_run/fast:
-	$(MAKE) $(MAKESILENT) -f test/CMakeFiles/Google_Tests_run.dir/build.make test/CMakeFiles/Google_Tests_run.dir/build
-.PHONY : Google_Tests_run/fast
+main/fast:
+	$(MAKE) $(MAKESILENT) -f src/CMakeFiles/main.dir/build.make src/CMakeFiles/main.dir/build
+.PHONY : main/fast
 
 #=============================================================================
-# Target rules for targets named gmock_main
+# Target rules for targets named single_linked_list
 
 # Build rule for target.
-gmock_main: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 gmock_main
-.PHONY : gmock_main
+single_linked_list: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 single_linked_list
+.PHONY : single_linked_list
 
 # fast build rule for target.
-gmock_main/fast:
-	$(MAKE) $(MAKESILENT) -f test/googletest/googlemock/CMakeFiles/gmock_main.dir/build.make test/googletest/googlemock/CMakeFiles/gmock_main.dir/build
-.PHONY : gmock_main/fast
+single_linked_list/fast:
+	$(MAKE) $(MAKESILENT) -f src/lib/CMakeFiles/single_linked_list.dir/build.make src/lib/CMakeFiles/single_linked_list.dir/build
+.PHONY : single_linked_list/fast
 
 #=============================================================================
-# Target rules for targets named gmock
+# Target rules for targets named valgrind_test_sample
 
 # Build rule for target.
-gmock: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 gmock
-.PHONY : gmock
+valgrind_test_sample: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 valgrind_test_sample
+.PHONY : valgrind_test_sample
 
 # fast build rule for target.
-gmock/fast:
-	$(MAKE) $(MAKESILENT) -f test/googletest/googlemock/CMakeFiles/gmock.dir/build.make test/googletest/googlemock/CMakeFiles/gmock.dir/build
-.PHONY : gmock/fast
+valgrind_test_sample/fast:
+	$(MAKE) $(MAKESILENT) -f test/CMakeFiles/valgrind_test_sample.dir/build.make test/CMakeFiles/valgrind_test_sample.dir/build
+.PHONY : valgrind_test_sample/fast
 
 #=============================================================================
-# Target rules for targets named gtest_main
+# Target rules for targets named test_sample
 
 # Build rule for target.
-gtest_main: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 gtest_main
-.PHONY : gtest_main
+test_sample: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test_sample
+.PHONY : test_sample
 
 # fast build rule for target.
-gtest_main/fast:
-	$(MAKE) $(MAKESILENT) -f test/googletest/googletest/CMakeFiles/gtest_main.dir/build.make test/googletest/googletest/CMakeFiles/gtest_main.dir/build
-.PHONY : gtest_main/fast
-
-#=============================================================================
-# Target rules for targets named gtest
-
-# Build rule for target.
-gtest: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 gtest
-.PHONY : gtest
-
-# fast build rule for target.
-gtest/fast:
-	$(MAKE) $(MAKESILENT) -f test/googletest/googletest/CMakeFiles/gtest.dir/build.make test/googletest/googletest/CMakeFiles/gtest.dir/build
-.PHONY : gtest/fast
+test_sample/fast:
+	$(MAKE) $(MAKESILENT) -f test/CMakeFiles/test_sample.dir/build.make test/CMakeFiles/test_sample.dir/build
+.PHONY : test_sample/fast
 
 main.o: main.c.o
 
@@ -306,13 +330,15 @@ help:
 	@echo "... install/strip"
 	@echo "... list_install_components"
 	@echo "... rebuild_cache"
-	@echo "... Google_Tests_run"
-	@echo "... gmock"
-	@echo "... gmock_main"
-	@echo "... gtest"
-	@echo "... gtest_main"
+	@echo "... test"
+	@echo "... gcov"
+	@echo "... lcov"
+	@echo "... valgrind_test_sample"
+	@echo "... main"
+	@echo "... single_linked_list"
 	@echo "... src"
 	@echo "... src_run"
+	@echo "... test_sample"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"

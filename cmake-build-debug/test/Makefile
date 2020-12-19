@@ -100,28 +100,6 @@ install/local/fast: preinstall/fast
 	/home/incvis/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/203.5981.166/bin/cmake/linux/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
 .PHONY : install/local/fast
 
-# Special rule for the target edit_cache
-edit_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
-	/home/incvis/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/203.5981.166/bin/cmake/linux/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
-.PHONY : edit_cache
-
-# Special rule for the target edit_cache
-edit_cache/fast: edit_cache
-
-.PHONY : edit_cache/fast
-
-# Special rule for the target rebuild_cache
-rebuild_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
-	/home/incvis/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/203.5981.166/bin/cmake/linux/bin/cmake --regenerate-during-build -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
-.PHONY : rebuild_cache
-
-# Special rule for the target rebuild_cache
-rebuild_cache/fast: rebuild_cache
-
-.PHONY : rebuild_cache/fast
-
 # Special rule for the target install
 install: preinstall
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
@@ -143,6 +121,39 @@ list_install_components:
 list_install_components/fast: list_install_components
 
 .PHONY : list_install_components/fast
+
+# Special rule for the target rebuild_cache
+rebuild_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
+	/home/incvis/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/203.5981.166/bin/cmake/linux/bin/cmake --regenerate-during-build -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+.PHONY : rebuild_cache
+
+# Special rule for the target rebuild_cache
+rebuild_cache/fast: rebuild_cache
+
+.PHONY : rebuild_cache/fast
+
+# Special rule for the target test
+test:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running tests..."
+	/home/incvis/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/203.5981.166/bin/cmake/linux/bin/ctest --force-new-ctest-process $(ARGS)
+.PHONY : test
+
+# Special rule for the target test
+test/fast: test
+
+.PHONY : test/fast
+
+# Special rule for the target edit_cache
+edit_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
+	/home/incvis/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/203.5981.166/bin/cmake/linux/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
+.PHONY : edit_cache
+
+# Special rule for the target edit_cache
+edit_cache/fast: edit_cache
+
+.PHONY : edit_cache/fast
 
 # The main all target
 all: cmake_check_build_system
@@ -177,46 +188,61 @@ depend:
 .PHONY : depend
 
 # Convenience name for target.
-test/CMakeFiles/Google_Tests_run.dir/rule:
-	cd /home/incvis/Documents/Projects/C/data_structures/cmake-build-debug && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test/CMakeFiles/Google_Tests_run.dir/rule
-.PHONY : test/CMakeFiles/Google_Tests_run.dir/rule
+test/CMakeFiles/valgrind_test_sample.dir/rule:
+	cd /home/incvis/Documents/Projects/C/data_structures/cmake-build-debug && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test/CMakeFiles/valgrind_test_sample.dir/rule
+.PHONY : test/CMakeFiles/valgrind_test_sample.dir/rule
 
 # Convenience name for target.
-Google_Tests_run: test/CMakeFiles/Google_Tests_run.dir/rule
+valgrind_test_sample: test/CMakeFiles/valgrind_test_sample.dir/rule
 
-.PHONY : Google_Tests_run
+.PHONY : valgrind_test_sample
 
 # fast build rule for target.
-Google_Tests_run/fast:
-	cd /home/incvis/Documents/Projects/C/data_structures/cmake-build-debug && $(MAKE) $(MAKESILENT) -f test/CMakeFiles/Google_Tests_run.dir/build.make test/CMakeFiles/Google_Tests_run.dir/build
-.PHONY : Google_Tests_run/fast
+valgrind_test_sample/fast:
+	cd /home/incvis/Documents/Projects/C/data_structures/cmake-build-debug && $(MAKE) $(MAKESILENT) -f test/CMakeFiles/valgrind_test_sample.dir/build.make test/CMakeFiles/valgrind_test_sample.dir/build
+.PHONY : valgrind_test_sample/fast
 
-test_single_linked_list.o: test_single_linked_list.cpp.o
+# Convenience name for target.
+test/CMakeFiles/test_sample.dir/rule:
+	cd /home/incvis/Documents/Projects/C/data_structures/cmake-build-debug && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test/CMakeFiles/test_sample.dir/rule
+.PHONY : test/CMakeFiles/test_sample.dir/rule
+
+# Convenience name for target.
+test_sample: test/CMakeFiles/test_sample.dir/rule
+
+.PHONY : test_sample
+
+# fast build rule for target.
+test_sample/fast:
+	cd /home/incvis/Documents/Projects/C/data_structures/cmake-build-debug && $(MAKE) $(MAKESILENT) -f test/CMakeFiles/test_sample.dir/build.make test/CMakeFiles/test_sample.dir/build
+.PHONY : test_sample/fast
+
+test_single_linked_list.o: test_single_linked_list.c.o
 
 .PHONY : test_single_linked_list.o
 
 # target to build an object file
-test_single_linked_list.cpp.o:
-	cd /home/incvis/Documents/Projects/C/data_structures/cmake-build-debug && $(MAKE) $(MAKESILENT) -f test/CMakeFiles/Google_Tests_run.dir/build.make test/CMakeFiles/Google_Tests_run.dir/test_single_linked_list.cpp.o
-.PHONY : test_single_linked_list.cpp.o
+test_single_linked_list.c.o:
+	cd /home/incvis/Documents/Projects/C/data_structures/cmake-build-debug && $(MAKE) $(MAKESILENT) -f test/CMakeFiles/test_sample.dir/build.make test/CMakeFiles/test_sample.dir/test_single_linked_list.c.o
+.PHONY : test_single_linked_list.c.o
 
-test_single_linked_list.i: test_single_linked_list.cpp.i
+test_single_linked_list.i: test_single_linked_list.c.i
 
 .PHONY : test_single_linked_list.i
 
 # target to preprocess a source file
-test_single_linked_list.cpp.i:
-	cd /home/incvis/Documents/Projects/C/data_structures/cmake-build-debug && $(MAKE) $(MAKESILENT) -f test/CMakeFiles/Google_Tests_run.dir/build.make test/CMakeFiles/Google_Tests_run.dir/test_single_linked_list.cpp.i
-.PHONY : test_single_linked_list.cpp.i
+test_single_linked_list.c.i:
+	cd /home/incvis/Documents/Projects/C/data_structures/cmake-build-debug && $(MAKE) $(MAKESILENT) -f test/CMakeFiles/test_sample.dir/build.make test/CMakeFiles/test_sample.dir/test_single_linked_list.c.i
+.PHONY : test_single_linked_list.c.i
 
-test_single_linked_list.s: test_single_linked_list.cpp.s
+test_single_linked_list.s: test_single_linked_list.c.s
 
 .PHONY : test_single_linked_list.s
 
 # target to generate assembly for a file
-test_single_linked_list.cpp.s:
-	cd /home/incvis/Documents/Projects/C/data_structures/cmake-build-debug && $(MAKE) $(MAKESILENT) -f test/CMakeFiles/Google_Tests_run.dir/build.make test/CMakeFiles/Google_Tests_run.dir/test_single_linked_list.cpp.s
-.PHONY : test_single_linked_list.cpp.s
+test_single_linked_list.c.s:
+	cd /home/incvis/Documents/Projects/C/data_structures/cmake-build-debug && $(MAKE) $(MAKESILENT) -f test/CMakeFiles/test_sample.dir/build.make test/CMakeFiles/test_sample.dir/test_single_linked_list.c.s
+.PHONY : test_single_linked_list.c.s
 
 # Help Target
 help:
@@ -230,7 +256,9 @@ help:
 	@echo "... install/strip"
 	@echo "... list_install_components"
 	@echo "... rebuild_cache"
-	@echo "... Google_Tests_run"
+	@echo "... test"
+	@echo "... valgrind_test_sample"
+	@echo "... test_sample"
 	@echo "... test_single_linked_list.o"
 	@echo "... test_single_linked_list.i"
 	@echo "... test_single_linked_list.s"

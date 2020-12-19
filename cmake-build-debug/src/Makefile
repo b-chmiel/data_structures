@@ -122,6 +122,17 @@ list_install_components/fast: list_install_components
 
 .PHONY : list_install_components/fast
 
+# Special rule for the target rebuild_cache
+rebuild_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
+	/home/incvis/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/203.5981.166/bin/cmake/linux/bin/cmake --regenerate-during-build -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+.PHONY : rebuild_cache
+
+# Special rule for the target rebuild_cache
+rebuild_cache/fast: rebuild_cache
+
+.PHONY : rebuild_cache/fast
+
 # Special rule for the target edit_cache
 edit_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
@@ -133,16 +144,16 @@ edit_cache/fast: edit_cache
 
 .PHONY : edit_cache/fast
 
-# Special rule for the target rebuild_cache
-rebuild_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
-	/home/incvis/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/203.5981.166/bin/cmake/linux/bin/cmake --regenerate-during-build -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
-.PHONY : rebuild_cache
+# Special rule for the target test
+test:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running tests..."
+	/home/incvis/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/203.5981.166/bin/cmake/linux/bin/ctest --force-new-ctest-process $(ARGS)
+.PHONY : test
 
-# Special rule for the target rebuild_cache
-rebuild_cache/fast: rebuild_cache
+# Special rule for the target test
+test/fast: test
 
-.PHONY : rebuild_cache/fast
+.PHONY : test/fast
 
 # The main all target
 all: cmake_check_build_system
@@ -191,32 +202,74 @@ src/fast:
 	cd /home/incvis/Documents/Projects/C/data_structures/cmake-build-debug && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/src.dir/build.make src/CMakeFiles/src.dir/build
 .PHONY : src/fast
 
-single_linked_list.o: single_linked_list.c.o
+# Convenience name for target.
+src/CMakeFiles/main.dir/rule:
+	cd /home/incvis/Documents/Projects/C/data_structures/cmake-build-debug && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/CMakeFiles/main.dir/rule
+.PHONY : src/CMakeFiles/main.dir/rule
 
-.PHONY : single_linked_list.o
+# Convenience name for target.
+main: src/CMakeFiles/main.dir/rule
+
+.PHONY : main
+
+# fast build rule for target.
+main/fast:
+	cd /home/incvis/Documents/Projects/C/data_structures/cmake-build-debug && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/main.dir/build.make src/CMakeFiles/main.dir/build
+.PHONY : main/fast
+
+lib/single_linked_list.o: lib/single_linked_list.c.o
+
+.PHONY : lib/single_linked_list.o
 
 # target to build an object file
-single_linked_list.c.o:
-	cd /home/incvis/Documents/Projects/C/data_structures/cmake-build-debug && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/src.dir/build.make src/CMakeFiles/src.dir/single_linked_list.c.o
-.PHONY : single_linked_list.c.o
+lib/single_linked_list.c.o:
+	cd /home/incvis/Documents/Projects/C/data_structures/cmake-build-debug && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/src.dir/build.make src/CMakeFiles/src.dir/lib/single_linked_list.c.o
+.PHONY : lib/single_linked_list.c.o
 
-single_linked_list.i: single_linked_list.c.i
+lib/single_linked_list.i: lib/single_linked_list.c.i
 
-.PHONY : single_linked_list.i
+.PHONY : lib/single_linked_list.i
 
 # target to preprocess a source file
-single_linked_list.c.i:
-	cd /home/incvis/Documents/Projects/C/data_structures/cmake-build-debug && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/src.dir/build.make src/CMakeFiles/src.dir/single_linked_list.c.i
-.PHONY : single_linked_list.c.i
+lib/single_linked_list.c.i:
+	cd /home/incvis/Documents/Projects/C/data_structures/cmake-build-debug && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/src.dir/build.make src/CMakeFiles/src.dir/lib/single_linked_list.c.i
+.PHONY : lib/single_linked_list.c.i
 
-single_linked_list.s: single_linked_list.c.s
+lib/single_linked_list.s: lib/single_linked_list.c.s
 
-.PHONY : single_linked_list.s
+.PHONY : lib/single_linked_list.s
 
 # target to generate assembly for a file
-single_linked_list.c.s:
-	cd /home/incvis/Documents/Projects/C/data_structures/cmake-build-debug && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/src.dir/build.make src/CMakeFiles/src.dir/single_linked_list.c.s
-.PHONY : single_linked_list.c.s
+lib/single_linked_list.c.s:
+	cd /home/incvis/Documents/Projects/C/data_structures/cmake-build-debug && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/src.dir/build.make src/CMakeFiles/src.dir/lib/single_linked_list.c.s
+.PHONY : lib/single_linked_list.c.s
+
+main.o: main.c.o
+
+.PHONY : main.o
+
+# target to build an object file
+main.c.o:
+	cd /home/incvis/Documents/Projects/C/data_structures/cmake-build-debug && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/main.dir/build.make src/CMakeFiles/main.dir/main.c.o
+.PHONY : main.c.o
+
+main.i: main.c.i
+
+.PHONY : main.i
+
+# target to preprocess a source file
+main.c.i:
+	cd /home/incvis/Documents/Projects/C/data_structures/cmake-build-debug && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/main.dir/build.make src/CMakeFiles/main.dir/main.c.i
+.PHONY : main.c.i
+
+main.s: main.c.s
+
+.PHONY : main.s
+
+# target to generate assembly for a file
+main.c.s:
+	cd /home/incvis/Documents/Projects/C/data_structures/cmake-build-debug && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/main.dir/build.make src/CMakeFiles/main.dir/main.c.s
+.PHONY : main.c.s
 
 # Help Target
 help:
@@ -230,10 +283,15 @@ help:
 	@echo "... install/strip"
 	@echo "... list_install_components"
 	@echo "... rebuild_cache"
+	@echo "... test"
+	@echo "... main"
 	@echo "... src"
-	@echo "... single_linked_list.o"
-	@echo "... single_linked_list.i"
-	@echo "... single_linked_list.s"
+	@echo "... lib/single_linked_list.o"
+	@echo "... lib/single_linked_list.i"
+	@echo "... lib/single_linked_list.s"
+	@echo "... main.o"
+	@echo "... main.i"
+	@echo "... main.s"
 .PHONY : help
 
 

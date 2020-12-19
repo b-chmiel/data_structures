@@ -5,7 +5,7 @@
 #include "gtest/gtest.h"
 
 extern "C" {
-#include <single_linked_list.h>
+#include <lib/includes/single_linked_list.h>
 #include <limits.h>
 }
 

@@ -5,7 +5,7 @@
 		<Option title="src"/>
 		<Option makefile_is_custom="1"/>
 		<Option compiler="gcc"/>
-		<Option virtualFolders="CMake Files\;CMake Files\src\;CMake Files\test\;CMake Files\test\googletest\;CMake Files\test\googletest\googlemock\;CMake Files\test\googletest\googlemock\cmake\;CMake Files\test\googletest\googletest\;CMake Files\test\googletest\googletest\cmake\;"/>
+		<Option virtualFolders="CMake Files\;CMake Files\src\;CMake Files\src\lib\;CMake Files\test\;CMake Files\cmake\;"/>
 		<Build>
 			<Target title="all">
 				<Option working_dir="/home/incvis/Documents/Projects/C/data_structures/cmake-build-debug/src"/>
@@ -57,12 +57,100 @@
 					<DistClean command="/usr/bin/make -j8 -f &quot;/home/incvis/Documents/Projects/C/data_structures/cmake-build-debug/src/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
+			<Target title="main">
+				<Option output="/home/incvis/Documents/Projects/C/data_structures/cmake-build-debug/src/main" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/incvis/Documents/Projects/C/data_structures/cmake-build-debug/src"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/incvis/Documents/Projects/C/data_structures/src"/>
+					<Add directory="/home/incvis/Documents/Projects/C/data_structures/src/lib/includes"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/incvis/Documents/Projects/C/data_structures/cmake-build-debug/src/Makefile&quot;  VERBOSE=1 main"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/incvis/Documents/Projects/C/data_structures/cmake-build-debug/src/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/incvis/Documents/Projects/C/data_structures/cmake-build-debug/src/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/incvis/Documents/Projects/C/data_structures/cmake-build-debug/src/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="main/fast">
+				<Option output="/home/incvis/Documents/Projects/C/data_structures/cmake-build-debug/src/main" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/incvis/Documents/Projects/C/data_structures/cmake-build-debug/src"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/incvis/Documents/Projects/C/data_structures/src"/>
+					<Add directory="/home/incvis/Documents/Projects/C/data_structures/src/lib/includes"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/incvis/Documents/Projects/C/data_structures/cmake-build-debug/src/Makefile&quot;  VERBOSE=1 main/fast"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/incvis/Documents/Projects/C/data_structures/cmake-build-debug/src/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/incvis/Documents/Projects/C/data_structures/cmake-build-debug/src/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/incvis/Documents/Projects/C/data_structures/cmake-build-debug/src/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="single_linked_list">
+				<Option output="/home/incvis/Documents/Projects/C/data_structures/cmake-build-debug/src/lib/libsingle_linked_list.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/incvis/Documents/Projects/C/data_structures/cmake-build-debug/src/lib"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/incvis/Documents/Projects/C/data_structures/src"/>
+					<Add directory="/home/incvis/Documents/Projects/C/data_structures/src/lib/includes"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/incvis/Documents/Projects/C/data_structures/cmake-build-debug/src/lib/Makefile&quot;  VERBOSE=1 single_linked_list"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/incvis/Documents/Projects/C/data_structures/cmake-build-debug/src/lib/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/incvis/Documents/Projects/C/data_structures/cmake-build-debug/src/lib/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/incvis/Documents/Projects/C/data_structures/cmake-build-debug/src/lib/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="single_linked_list/fast">
+				<Option output="/home/incvis/Documents/Projects/C/data_structures/cmake-build-debug/src/lib/libsingle_linked_list.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/incvis/Documents/Projects/C/data_structures/cmake-build-debug/src/lib"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/incvis/Documents/Projects/C/data_structures/src"/>
+					<Add directory="/home/incvis/Documents/Projects/C/data_structures/src/lib/includes"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/incvis/Documents/Projects/C/data_structures/cmake-build-debug/src/lib/Makefile&quot;  VERBOSE=1 single_linked_list/fast"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/incvis/Documents/Projects/C/data_structures/cmake-build-debug/src/lib/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/incvis/Documents/Projects/C/data_structures/cmake-build-debug/src/lib/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/incvis/Documents/Projects/C/data_structures/cmake-build-debug/src/lib/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
 		</Build>
-		<Unit filename="/home/incvis/Documents/Projects/C/data_structures/src/single_linked_list.c">
+		<Unit filename="/home/incvis/Documents/Projects/C/data_structures/src/lib/includes/single_linked_list.h">
 			<Option target="src"/>
 		</Unit>
-		<Unit filename="/home/incvis/Documents/Projects/C/data_structures/src/single_linked_list.h">
+		<Unit filename="/home/incvis/Documents/Projects/C/data_structures/src/lib/single_linked_list.c">
 			<Option target="src"/>
+			<Option target="single_linked_list"/>
+		</Unit>
+		<Unit filename="/home/incvis/Documents/Projects/C/data_structures/src/main.c">
+			<Option target="main"/>
 		</Unit>
 		<Unit filename="/home/incvis/Documents/Projects/C/data_structures/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
@@ -70,35 +158,17 @@
 		<Unit filename="/home/incvis/Documents/Projects/C/data_structures/src/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\src\"/>
 		</Unit>
+		<Unit filename="/home/incvis/Documents/Projects/C/data_structures/src/lib/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\src\lib\"/>
+		</Unit>
 		<Unit filename="/home/incvis/Documents/Projects/C/data_structures/test/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\test\"/>
 		</Unit>
-		<Unit filename="/home/incvis/Documents/Projects/C/data_structures/test/googletest/CMakeLists.txt">
-			<Option virtualFolder="CMake Files\test\googletest\"/>
+		<Unit filename="/home/incvis/Documents/Projects/C/data_structures/cmake/FindCheck.cmake">
+			<Option virtualFolder="CMake Files\cmake\"/>
 		</Unit>
-		<Unit filename="/home/incvis/Documents/Projects/C/data_structures/test/googletest/googlemock/CMakeLists.txt">
-			<Option virtualFolder="CMake Files\test\googletest\googlemock\"/>
-		</Unit>
-		<Unit filename="/home/incvis/Documents/Projects/C/data_structures/test/googletest/googlemock/cmake/gmock.pc.in">
-			<Option virtualFolder="CMake Files\test\googletest\googlemock\cmake\"/>
-		</Unit>
-		<Unit filename="/home/incvis/Documents/Projects/C/data_structures/test/googletest/googlemock/cmake/gmock_main.pc.in">
-			<Option virtualFolder="CMake Files\test\googletest\googlemock\cmake\"/>
-		</Unit>
-		<Unit filename="/home/incvis/Documents/Projects/C/data_structures/test/googletest/googletest/CMakeLists.txt">
-			<Option virtualFolder="CMake Files\test\googletest\googletest\"/>
-		</Unit>
-		<Unit filename="/home/incvis/Documents/Projects/C/data_structures/test/googletest/googletest/cmake/Config.cmake.in">
-			<Option virtualFolder="CMake Files\test\googletest\googletest\cmake\"/>
-		</Unit>
-		<Unit filename="/home/incvis/Documents/Projects/C/data_structures/test/googletest/googletest/cmake/gtest.pc.in">
-			<Option virtualFolder="CMake Files\test\googletest\googletest\cmake\"/>
-		</Unit>
-		<Unit filename="/home/incvis/Documents/Projects/C/data_structures/test/googletest/googletest/cmake/gtest_main.pc.in">
-			<Option virtualFolder="CMake Files\test\googletest\googletest\cmake\"/>
-		</Unit>
-		<Unit filename="/home/incvis/Documents/Projects/C/data_structures/test/googletest/googletest/cmake/internal_utils.cmake">
-			<Option virtualFolder="CMake Files\test\googletest\googletest\cmake\"/>
+		<Unit filename="/home/incvis/Documents/Projects/C/data_structures/cmake/FindValgrind.cmake">
+			<Option virtualFolder="CMake Files\cmake\"/>
 		</Unit>
 	</Project>
 </CodeBlocks_project_file>
