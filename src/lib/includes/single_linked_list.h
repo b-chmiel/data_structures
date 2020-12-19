@@ -3,6 +3,7 @@
 //
 
 #include <stdio.h>
+#include <stdbool.h>
 
 #ifndef DATA_STRUCTURES_SINGLE_LINKED_LIST_H
 #define DATA_STRUCTURES_SINGLE_LINKED_LIST_H
