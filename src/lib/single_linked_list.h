@@ -26,12 +26,12 @@ int get_at(int index, struct node *head);
 
 void split_into_two(struct node *head, struct node **first, struct node **second);
 
-//void merge_sorted(struct node **head,
-//             struct node *first,
-//             struct node *second,
-//             int(*comparator)(const void *, const void *));
-//
-//void merge_sort(struct node **head, int(*comparator)(const void *, const void *));
+void merge_sorted(struct node **head,
+             struct node *first,
+             struct node *second,
+             int(*comparator)(const void *, const void *));
+
+void merge_sort(struct node **head, int(*comparator)(const void *, const void *));
 
 bool delete_by_content(int item, struct node **head);
 

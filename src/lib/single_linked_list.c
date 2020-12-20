@@ -6,7 +6,7 @@
 #include <limits.h>
 #include <stdbool.h>
 #include <stdarg.h>
-#include "lib/includes/single_linked_list.h"
+#include "single_linked_list.h"
 
 void add(struct node **head, int data)
 {
@@ -103,62 +103,54 @@ void split_into_two(struct node *head, struct node **first, struct node **second
         *first = head;
 }
 
-//void merge_sorted(struct node **head, struct node *first, struct node *second, int(*comparator)(const void *, const void *))
-//{
-//        struct node *result = malloc(sizeof(struct node));
-//        result->data = NULL;
-//        result->next = NULL;
-//
-//        while (second != NULL) {
-//                if (first != NULL) {
-//                        if (first->data >= second->data) {
-//                                struct node *to_insert = malloc(sizeof(struct node));
-//                                struct node *to_insert2 = malloc(sizeof(struct node));
-//                                to_insert->data = second->data;
-//                                to_insert2->data = first->data;
-//
-//                                result->next = to_insert;
-//                                result->next = to_insert2;
-//                        } else {
-//                                struct node *to_insert = malloc(sizeof(struct node));
-//                                struct node *to_insert2 = malloc(sizeof(struct node));
-//                                to_insert->data = first->data;
-//                                to_insert2->data = second->data;
-//
-//                                result->next = to_insert;
-//                                result->next = to_insert2;
-//                        }
-//                } else {
-//                        struct node *to_insert = malloc(sizeof(struct node));
-//                        to_insert->next = NULL;
-//                        to_insert->data = second->data;
-//                        break;
-//                }
-//
-//                if (first != NULL)
-//                        first = first->next;
-//
-//                second = second->next;
-//        }
-//
-//        *head = result->next;
-//}
-//
-//void merge_sort(struct node **head, int(*comparator)(const void *, const void *))
-//{
-//        if (*head == NULL || (*head)->next == NULL)
-//                return;
-//
-//        struct node *first = NULL;
-//        struct node *second = NULL;
-//
-//        split_into_two(*head, &first, &second);
-//
-//        merge_sort(&first, comparator);
-//        merge_sort(&second, comparator);
-//
-//        merge_sorted(head, first, second, comparator);
-//}
+void
+merge_sorted(struct node **head, struct node *first, struct node *second, int(*comparator)(const void *, const void *))
+{
+        *head = malloc(sizeof(struct node));
+        (*head)->next = NULL;
+        (*head)->data = NULL;
+        struct node *head_tail = *head;
+
+        while (second != NULL || first != NULL) {
+                if (first != NULL && second != NULL) {
+                        if (first->data >= second->data) {
+                                head_tail->next = second;
+                                head_tail = head_tail->next;
+                                second = second->next;
+                        } else {
+                                head_tail->next = first;
+                                head_tail = head_tail->next;
+                                first = first->next;
+                        }
+                } else if(first == NULL) {
+                        head_tail->next = second;
+                        head_tail = head_tail->next;
+                        second = second->next;
+                } else {
+                        head_tail->next = first;
+                        head_tail = head_tail->next;
+                        first = first->next;
+                }
+                head_tail->next = NULL;
+        }
+        delete_by_index(0, head);
+}
+
+void merge_sort(struct node **head, int(*comparator)(const void *, const void *))
+{
+        if (*head == NULL || (*head)->next == NULL)
+                return;
+
+        struct node *first = NULL;
+        struct node *second = NULL;
+
+        split_into_two(*head, &first, &second);
+
+        merge_sort(&first, comparator);
+        merge_sort(&second, comparator);
+
+        merge_sorted(head, first, second, comparator);
+}
 
 bool delete_by_content(int data, struct node **head)
 {

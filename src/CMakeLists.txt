@@ -1,7 +1,7 @@
 project(src)
 
 set(HEADER_FILES
-        lib/includes/single_linked_list.h
+        lib/single_linked_list.h
         )
 
 set(SOURCE_FILES
