@@ -21,31 +21,32 @@ PROFILE_FLAGS = -fprofile-arcs -ftest-coverage
 all: coverage.html
 
 data_structures.o: $(SRC_FILES) $(HDR_FILES)
-	$(CC) $(CFLAGS) $(PROFILE_FLAGS) $(SRC_FILES) -o data_structures.o 
 	mkdir -p $(OUT_DIR)
-	mv data_structures.* $(OUT_DIR)/
+	$(CC) $(CFLAGS) $(PROFILE_FLAGS) $(SRC_FILES) -o $(OUT_DIR)/data_structures.o 
 
 test_src.o: $(TST_FILES)
-	$(CC) $(CFLAGS) $(TST_FILES) -o test_src.o
 	mkdir -p $(OUT_DIR)
-	mv test_src.* $(OUT_DIR)/
+	$(CC) $(CFLAGS) $(TST_FILES) -o $(OUT_DIR)/test_src.o
 
 test_src: data_structures.o test_src.o
-	$(CC) $(OUT_DIR)/data_structures.o $(OUT_DIR)/test_src.o $(TST_LIBS) $(COV_LIBS) -o test_src
 	mkdir -p $(OUT_DIR)
-	mv test_src $(OUT_DIR)/
+	$(CC) $(OUT_DIR)/data_structures.o $(OUT_DIR)/test_src.o $(TST_LIBS) $(COV_LIBS) -o $(OUT_DIR)/test_src
 
 test: test_src
 	./build/test_src
-	mkdir -p $(COV_DIR)
-	mv test.* test_src.* data_structures.* $(COV_DIR)/
 
 coverage.html: test
 	$(GCOV) $(GCOV_FLAGS) -o coverage.html
 	mkdir -p $(COV_DIR)
 	mv coverage.* $(COV_DIR)/
 
-.PHONY: clean
+# valgrind: test
+# 	valgrind --leak-check=yes --show-leak-kinds=all ./build/test_src.o
+
+# valgrind-full: test
+# 	valgrind --tool=memchecleak-check=yes -v --leak-check=full --show-reachable=yes ./build/test_src.o
+
+.PHONY: clean # valgrind valgrind-full
 
 clean:
-	-rm -rf build/ coverage/
+	-rm -rf $(OUT_DIR) $(COV_DIR)

@@ -1,15 +1,5 @@
-//
-// Created by bachm44 on 06/11/2020.
-//
-
 #include <stdio.h>
 #include <stdbool.h>
-
-#ifndef DATA_STRUCTURES_SINGLE_LINKED_LIST_H
-#define DATA_STRUCTURES_SINGLE_LINKED_LIST_H
-
-#endif //DATA_STRUCTURES_SINGLE_LINKED_LIST_H
-
 
 struct node {
     int data;

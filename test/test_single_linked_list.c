@@ -1,7 +1,3 @@
-//
-// Created by incvis on 19.12.2020.
-//
-
 #include <stdlib.h>
 #include <stdint.h>
 #include <check.h>
@@ -463,9 +459,7 @@ int main(void)
         srunner_add_suite(sr, deleting_suite());
         srunner_add_suite(sr, sorting_suite());
         srunner_set_fork_status(sr, CK_NOFORK);
-        srunner_set_log(sr, "test.log");
-        srunner_set_xml(sr, "test.xml");
-        srunner_run_all(sr, CK_VERBOSE);
+        srunner_run_all(sr, CK_NORMAL);
 
         number_failed = srunner_ntests_failed(sr);
         srunner_free(sr);

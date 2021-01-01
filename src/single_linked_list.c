@@ -1,7 +1,3 @@
-//
-// Created by bachm44 on 06/11/2020.
-//
-
 #include <malloc.h>
 #include <limits.h>
 #include <stdbool.h>
