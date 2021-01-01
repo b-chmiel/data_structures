@@ -5,7 +5,7 @@
 #include <stdlib.h>
 #include <stdint.h>
 #include <check.h>
-#include <lib/single_linked_list.h>
+#include <single_linked_list.h>
 #include <limits.h>
 
 struct node *head;
