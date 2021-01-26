@@ -1,18 +1,26 @@
 #include <stdio.h>
 #include <stdbool.h>
+#include <methods_interface.h>
 
-struct node {
-    int data;
-    struct node *next;
+struct single_linked_list {
+        struct node *root;
+        struct methods_interface *interface;
 };
 
-void add(struct node **head, int data);
+struct node {
+	void *data;
+	struct node *next;
+};
+
+struct single_linked_list* init(struct methods_interface *interface);
+
+void add(struct node **head, void* data);
 
 void add_many(struct node **head, int number_of_args, ...);
 
-void add_at(int index, int data, struct node **head);
+void add_at(int index, void* data, struct node **head);
 
-int get_at(int index, struct node *head);
+void* get_at(int index, struct node *head);
 
 void split_into_two(struct node *head, struct node **first, struct node **second);
 

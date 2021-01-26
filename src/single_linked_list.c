@@ -4,9 +4,18 @@
 #include <stdarg.h>
 #include "single_linked_list.h"
 
-void add(struct node **head, int data)
+struct single_linked_list* init(struct methods_interface* interface)
 {
-        add_at(-1, data, head);
+        struct single_linked_list* result = malloc(sizeof(struct single_linked_list));
+        result->interface = interface;
+        result->root = NULL;
+
+        return result;
+}
+
+void add(struct node **head, void* data)
+{
+        add_at(-1, data, (void* )head);
 }
 
 void add_many(struct node **head, int number_of_args, ...)
@@ -18,16 +27,16 @@ void add_many(struct node **head, int number_of_args, ...)
         va_start(arg_pointer, number_of_args);
 
         do {
-                add_at(-1, va_arg(arg_pointer, int), head);
+                add_at(-1, va_arg(arg_pointer, void*), head);
                 number_of_args--;
         } while (number_of_args > 0);
 
         va_end(arg_pointer);
 }
 
-void add_at(int index, int data, struct node **head)
+void add_at(int index, void* data, struct node **head)
 {
-        struct node *to_insert = malloc(sizeof(struct node) * 1);
+        struct node *to_insert = malloc(sizeof(struct node));
         to_insert->data = data;
         to_insert->next = NULL;
 
@@ -61,10 +70,10 @@ void add_at(int index, int data, struct node **head)
         to_insert->next = curr;
 }
 
-int get_at(int index, struct node *head)
+void* get_at(int index, struct node *head)
 {
         if (index < 0) {
-                return INT_MIN;
+                return NULL;
         }
 
         struct node *temp = head;
@@ -75,7 +84,7 @@ int get_at(int index, struct node *head)
         }
 
         if (temp == NULL) {
-                return INT_MAX;
+                return NULL;
         }
 
         return temp->data;
