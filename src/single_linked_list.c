@@ -15,7 +15,7 @@ struct single_linked_list *init(struct methods_interface *interface)
 
 void add(struct single_linked_list **list, void *data)
 {
-        add_at(-1, data, list);
+        add_at(list, -1, data);
 }
 
 void add_many(struct single_linked_list **list, int number_of_args, ...)
@@ -28,14 +28,14 @@ void add_many(struct single_linked_list **list, int number_of_args, ...)
 
         do
         {
-                add_at(-1, va_arg(arg_pointer, void *), list);
+                add_at(list, -1, va_arg(arg_pointer, void *));
                 number_of_args--;
         } while (number_of_args > 0);
 
         va_end(arg_pointer);
 }
 
-void add_at(int index, void *data, struct single_linked_list **list)
+void add_at(struct single_linked_list **list, int index, void *data)
 {
         struct node **head = &((*list)->root);
         struct node *to_insert = malloc(sizeof(struct node));
@@ -76,7 +76,7 @@ void add_at(int index, void *data, struct single_linked_list **list)
         to_insert->next = curr;
 }
 
-void *get_at(int index, struct single_linked_list *list)
+void *get_at(struct single_linked_list *list, int index)
 {
         if (index < 0)
         {
@@ -203,7 +203,7 @@ void merge_sort(struct single_linked_list **list)
         merge_sort_rec(head, comparator);
 }
 
-bool delete_by_content(void *data, struct single_linked_list **list)
+bool delete_by_content(struct single_linked_list **list, void *data)
 {
         struct node *prev = NULL;
         struct node *curr = (*list)->root;
@@ -242,7 +242,7 @@ bool delete_by_content(void *data, struct single_linked_list **list)
         return true;
 }
 
-bool delete_by_index(int index, struct single_linked_list **list)
+bool delete_by_index(struct single_linked_list **list, int index)
 {
         if (index < 0)
                 return false;
@@ -303,7 +303,7 @@ void free_list(struct single_linked_list *list)
 void clear_list(struct single_linked_list **list)
 {
         while ((*list)->root != NULL)
-                delete_by_index(0, list);
+                delete_by_index(list, 0);
 }
 
 void print_list(struct node *head)
@@ -311,7 +311,7 @@ void print_list(struct node *head)
         struct node *temp = head;
         while (temp != NULL)
         {
-                printf("%d ", (long int)temp->data);
+                printf("%ld ", (long int)temp->data);
                 temp = temp->next;
         }
         printf("\n");
