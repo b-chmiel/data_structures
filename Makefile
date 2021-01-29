@@ -50,10 +50,14 @@ coverage.html: test
 	mv coverage.* $(COV_DIR)/
 
 valgrind: test_src
-	valgrind --tool=memcheck --leak-check=full --show-reachable=yes ./build/test_src
+	valgrind --tool=memcheck --leak-check=full --show-reachable=yes -s ./build/test_src 
 
 valgrind-v: test_src
 	valgrind --tool=memcheck -v --leak-check=full --show-reachable=yes ./build/test_src
+
+massif: test_src
+	valgrind --tool=massif --massif-out-file=/home/incvis/snap/massif-visualizer/massif.out ./build/test_src 
+
 
 .PHONY: clean debug
 

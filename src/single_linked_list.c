@@ -13,12 +13,12 @@ struct single_linked_list* init(struct methods_interface* interface)
         return result;
 }
 
-void add(struct node **head, void* data)
+void add(struct single_linked_list **list, void* data)
 {
-        add_at(-1, data, (void* )head);
+        add_at(-1, data, list);
 }
 
-void add_many(struct node **head, int number_of_args, ...)
+void add_many(struct single_linked_list **list, int number_of_args, ...)
 {
         if (number_of_args <= 0)
                 return;
@@ -27,20 +27,21 @@ void add_many(struct node **head, int number_of_args, ...)
         va_start(arg_pointer, number_of_args);
 
         do {
-                add_at(-1, va_arg(arg_pointer, void*), head);
+                add_at(-1, va_arg(arg_pointer, void*), list);
                 number_of_args--;
         } while (number_of_args > 0);
 
         va_end(arg_pointer);
 }
 
-void add_at(int index, void* data, struct node **head)
+void add_at(int index, void* data, struct single_linked_list **list)
 {
+        struct node **head = &((*list)->root);
         struct node *to_insert = malloc(sizeof(struct node));
         to_insert->data = data;
         to_insert->next = NULL;
 
-        if (head == NULL) {
+        if (*head == NULL) {
                 *head = to_insert;
                 return;
         }
@@ -70,13 +71,13 @@ void add_at(int index, void* data, struct node **head)
         to_insert->next = curr;
 }
 
-void* get_at(int index, struct node *head)
+void* get_at(int index, struct single_linked_list *list)
 {
         if (index < 0) {
                 return NULL;
         }
 
-        struct node *temp = head;
+        struct node *temp = list->root;
 
         while (temp != NULL && index > 0) {
                 temp = temp->next;
@@ -108,17 +109,34 @@ void split_into_two(struct node *head, struct node **first, struct node **second
         *first = head;
 }
 
+int compare_int(const void *item1, const void* item2) {
+        const long int i1 = *((const long int*) item1);
+        const long int i2 = *((const long int*) item2);
+
+        if (i1 == i2)
+                return 0;
+
+        return i1 > i2 ? 1 : -1;
+}
+
 void
 merge_sorted(struct node **head, struct node *first, struct node *second, int(*comparator)(const void *, const void *))
 {
+        struct node *head_tail = *head;
+        int(*compare_items)(const void *, const void*);
+
         *head = malloc(sizeof(struct node));
         (*head)->next = NULL;
         (*head)->data = NULL;
-        struct node *head_tail = *head;
 
+        if (comparator == NULL) 
+                compare_items = compare_int;
+        else
+                compare_items = comparator;
+        
         while (second != NULL || first != NULL) {
                 if (first != NULL && second != NULL) {
-                        if (first->data >= second->data) {
+                        if (compare_items(first->data, second->data) >= 0){
                                 head_tail->next = second;
                                 head_tail = head_tail->next;
                                 second = second->next;
@@ -141,7 +159,7 @@ merge_sorted(struct node **head, struct node *first, struct node *second, int(*c
         delete_by_index(0, head);
 }
 
-void merge_sort(struct node **head, int(*comparator)(const void *, const void *))
+void _merge_sort(struct node **head, int(*comparator)(const void *, const void *))
 {
         if (*head == NULL || (*head)->next == NULL)
                 return;
@@ -151,10 +169,15 @@ void merge_sort(struct node **head, int(*comparator)(const void *, const void *)
 
         split_into_two(*head, &first, &second);
 
-        merge_sort(&first, comparator);
-        merge_sort(&second, comparator);
+        _merge_sort(&first, comparator);
+        _merge_sort(&second, comparator);
 
         merge_sorted(head, first, second, comparator);
+}
+
+void merge_sort(struct single_linked_list **list)
+{
+        _merge_sort(&((*list)->root), ((*list)->interface->compare));
 }
 
 bool delete_by_content(int data, struct node **head)
@@ -217,14 +240,26 @@ bool delete_by_index(int index, struct node **head)
         return true;
 }
 
-void delete_list(struct node **head)
+void free_list(struct single_linked_list *list)
 {
         struct node *temp;
-        while (*head != NULL) {
-                temp = *head;
-                *head = (*head)->next;
-                free(temp);
+        struct node *head = list->root;
+        if (list->interface->free_element != NULL) {
+                while (head != NULL) {
+                        temp = head;
+                        head = head->next;
+                        list->interface->free_element((void*) temp);
+                }
         }
+        else {
+                while (head != NULL) {
+                        temp = head;
+                        head = head->next;
+                        free(temp);
+                }
+        }
+        free(list->interface);
+        free(list);
 }
 
 void print_list(struct node *head)
