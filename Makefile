@@ -1,3 +1,5 @@
+LIB_NAME = data_structures
+
 CC = gcc
 GCOV = gcovr
 
@@ -10,36 +12,28 @@ TST_DIR = test
 OUT_DIR = build
 COV_DIR = coverage
 
-SRC_FILES = $(addprefix $(SRC_DIR)/, *.c)
-HDR_FILES = $(addprefix $(HDR_DIR)/, *.h)
-TST_FILES = $(addprefix $(TST_DIR)/, *.c)
+SRCS = $(wildcard $(SRC_DIR)/*.c)
+OBJS = $(SRCS:$(SRC_DIR)/%.c=$(OUT_DIR)/%.o)
+TST_SRCS = $(wildcard $(TST_DIR)/*.c)
+TST_OBJS = $(TST_SRCS:$(TST_DIR)/%.c=$(OUT_DIR/%.o))
 
 GCOV_FLAGS = -r . --html --html-details
 CFLAGS = -c -Wall -Wextra -I$(HDR_DIR)
-DEBUG_FLAGS = -g -c -Wall -Wextra -I$(HDR_DIR)
+DEBUG_FLAGS = -g -Wall -Wextra -I$(HDR_DIR)
 PROFILE_FLAGS = -fprofile-arcs -ftest-coverage
 
-all: coverage.html
 
-debug: data_structures_gdb.o
+.PHONY: clean valgrind valgrind-v test coverage
 
-build: data_structures.o 
-
-data_structures_gdb.o: $(SRC_FILES) $(HDR_FILES)
+	
+$(LIB_NAME):
 	mkdir -p $(OUT_DIR)
-	$(CC) $(DEBUG_FLAGS) $(PROFILE_FLAGS) $(SRC_FILES) -o $(OUT_DIR)/data_structures_gdb.o 
+	$(CC) $(DEBUG_FLAGS) -c $(SRC_DIR)/*.c 
+	ar -rc build/data_structures.a *.o 
+	rm -f *.o
 
-data_structures.o: $(SRC_FILES) $(HDR_FILES)
-	mkdir -p $(OUT_DIR)
-	$(CC) $(CFLAGS) $(PROFILE_FLAGS) $(SRC_FILES) -o $(OUT_DIR)/data_structures.o 
-
-test_src.o: $(TST_FILES)
-	mkdir -p $(OUT_DIR)
-	$(CC) $(CFLAGS) $(TST_FILES) -o $(OUT_DIR)/test_src.o $(DEBUG_FLAGS)
-
-test_src: data_structures_gdb.o test_src.o
-	mkdir -p $(OUT_DIR)
-	$(CC) $(OUT_DIR)/data_structures_gdb.o $(OUT_DIR)/test_src.o $(TST_LIBS) $(COV_LIBS) -o $(OUT_DIR)/test_src
+test_src: $(LIB_NAME)
+	$(CC) $(DEBUG_FLAGS) test/*.c $(TST_LIBS) -Lbuild -l:data_structures.a -o build/test_src
 
 test: test_src
 	./build/test_src
@@ -49,17 +43,13 @@ coverage.html: test
 	mkdir -p $(COV_DIR)
 	mv coverage.* $(COV_DIR)/
 
+coverage: coverage.html
+
 valgrind: test_src
 	valgrind --tool=memcheck --leak-check=full --show-reachable=yes -s ./build/test_src 
 
 valgrind-v: test_src
 	valgrind --tool=memcheck -v --leak-check=full --show-reachable=yes ./build/test_src
-
-massif: test_src
-	valgrind --tool=massif --massif-out-file=/home/incvis/snap/massif-visualizer/massif.out ./build/test_src 
-
-
-.PHONY: clean debug
 
 clean:
 	-rm -rf $(OUT_DIR) $(COV_DIR)

@@ -1,14 +1,14 @@
 #include <stdlib.h>
 #include <stdint.h>
 #include <check.h>
-#include <single_linked_list.h>
 #include <limits.h>
 #include <stdint.h>
+#include <single_linked_list.h>
 
 struct methods_interface *interface;
 struct single_linked_list *list;
 
-void setup(void)
+void single_linked_list_setup(void)
 {
         interface = malloc(sizeof(struct methods_interface));
         interface->compare = NULL;
@@ -16,7 +16,7 @@ void setup(void)
         list = init(interface);
 }
 
-void teardown(void)
+void single_linked_list_teardown(void)
 {
         free_list(list);
 }
@@ -189,89 +189,25 @@ START_TEST(test_clear_list)
 }
 END_TEST
 
-Suite *adding_suite(void)
+Suite *single_linked_list_suite(void)
 {
         Suite *s;
         TCase *tc_core;
+        s = suite_create("Single linked list");
+        tc_core = tcase_create("single_linked_list");
 
-        s = suite_create("Adding");
-        tc_core = tcase_create("add");
-
-        tcase_add_checked_fixture(tc_core, setup, teardown);
+        tcase_add_checked_fixture(tc_core, single_linked_list_setup, single_linked_list_teardown);
         tcase_add_test(tc_core, test_add);
         tcase_add_test(tc_core, test_add_many);
         tcase_add_test(tc_core, test_sequential_add_at);
         tcase_add_test(tc_core, test_random_add);
-
-        suite_add_tcase(s, tc_core);
-
-        return s;
-}
-
-Suite *get_element_suite(void)
-{
-        Suite *s;
-        TCase *tc_core;
-
-        s = suite_create("Get element");
-        tc_core = tcase_create("get");
-
-        tcase_add_checked_fixture(tc_core, setup, teardown);
         tcase_add_test(tc_core, test_get_element);
-
-        suite_add_tcase(s, tc_core);
-
-        return s;
-}
-
-Suite *sorting_suite(void)
-{
-        Suite *s;
-        TCase *tc_core;
-
-        s = suite_create("Sort elements");
-        tc_core = tcase_create("Sort");
-
-        tcase_add_checked_fixture(tc_core, setup, teardown);
         tcase_add_test(tc_core, test_merge_sort_1);
         tcase_add_test(tc_core, test_merge_sort_2);
-
-        suite_add_tcase(s, tc_core);
-
-        return s;
-}
-
-Suite *deleting_suite(void)
-{
-        Suite *s;
-        TCase *tc_core;
-
-        s = suite_create("Deletion");
-        tc_core = tcase_create("delete");
-
-        tcase_add_checked_fixture(tc_core, setup, teardown);
         tcase_add_test(tc_core, test_delete_by_content);
         tcase_add_test(tc_core, test_delete_by_index);
         tcase_add_test(tc_core, test_clear_list);
 
         suite_add_tcase(s, tc_core);
-
         return s;
-}
-
-int main(void)
-{
-        int number_failed;
-        SRunner *sr;
-
-        sr = srunner_create(adding_suite());
-        srunner_add_suite(sr, get_element_suite());
-        srunner_add_suite(sr, deleting_suite());
-        srunner_add_suite(sr, sorting_suite());
-        srunner_set_fork_status(sr, CK_NOFORK);
-        srunner_run_all(sr, CK_NORMAL);
-
-        number_failed = srunner_ntests_failed(sr);
-        srunner_free(sr);
-        return (number_failed == 0) ? EXIT_SUCCESS : EXIT_FAILURE;
 }
