@@ -4,7 +4,7 @@
 #include <check.h>
 #include <limits.h>
 #include <stdint.h>
-#include <binary_tree.h>
+#include "binary_tree.h"
 
 struct methods_interface *interface;
 struct binary_tree *tree;

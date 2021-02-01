@@ -3,6 +3,7 @@
 #include <stdbool.h>
 #include <stdarg.h>
 #include "single_linked_list.h"
+#include "comparators.h"
 
 struct single_linked_list *init(struct methods_interface *interface)
 {
@@ -109,17 +110,6 @@ static void split_into_two(struct node *head, struct node **first,
 	*second = slow->next;
 	slow->next = NULL;
 	*first = head;
-}
-
-static int compare_int(const void *item1, const void *item2)
-{
-	const long int i1 = *((long int *)item1);
-	const long int i2 = *((long int *)item2);
-
-	if (i1 == i2)
-		return 0;
-
-	return i1 > i2 ? 1 : -1;
 }
 
 static void merge_sorted(struct node **head, struct node *first,

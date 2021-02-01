@@ -7,10 +7,10 @@ TST_LIBS = -lcheck -lm -lpthread -lrt -lsubunit
 COV_LIBS = -lgcov -coverage
 
 SRC_DIR = src
-HDR_DIR = include
 TST_DIR = test
 OUT_DIR = build
 COV_DIR = coverage
+UTL_DIR = util
 
 SRCS = $(wildcard $(SRC_DIR)/*.c)
 OBJS = $(SRCS:$(SRC_DIR)/%.c=$(OUT_DIR)/%.o)
@@ -18,8 +18,8 @@ TST_SRCS = $(wildcard $(TST_DIR)/*.c)
 TST_OBJS = $(TST_SRCS:$(TST_DIR)/%.c=$(OUT_DIR/%.o))
 
 GCOV_FLAGS = -r . --html --html-details
-CFLAGS = -c -Wall -Wextra -I$(HDR_DIR)
-DEBUG_FLAGS = -g -Wall -Wextra -I$(HDR_DIR)
+CFLAGS = -c -Wall -Wextra
+DEBUG_FLAGS = -g -Wall -Wextra
 PROFILE_FLAGS = -fprofile-arcs -ftest-coverage
 
 
@@ -28,12 +28,12 @@ PROFILE_FLAGS = -fprofile-arcs -ftest-coverage
 	
 $(LIB_NAME):
 	mkdir -p $(OUT_DIR)
-	$(CC) $(DEBUG_FLAGS) -c $(SRC_DIR)/*.c 
+	$(CC) $(DEBUG_FLAGS) -c $(SRC_DIR)/*.c -I$(UTL_DIR)
 	ar -rc build/data_structures.a *.o 
 	rm -f *.o
 
 test_src: $(LIB_NAME)
-	$(CC) $(DEBUG_FLAGS) test/*.c $(TST_LIBS) -Lbuild -l:data_structures.a -o build/test_src
+	$(CC) $(DEBUG_FLAGS) test/*.c util/comparators.c $(TST_LIBS) -Lbuild -l:data_structures.a -o build/test_src -I$(UTL_DIR) -I$(SRC_DIR) 
 
 test: test_src
 	./build/test_src
@@ -52,7 +52,7 @@ valgrind-v: test_src
 	valgrind --tool=memcheck -v --leak-check=full --show-reachable=yes ./build/test_src
 
 format:
-	clang-format -i include/*.h src/*.c test/*.c test/*.h
+	clang-format -i util/*.[ch] src/*.[ch] test/*.[ch]
 
 clean:
 	-rm -rf $(OUT_DIR) $(COV_DIR)

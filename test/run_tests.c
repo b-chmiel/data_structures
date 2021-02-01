@@ -1,6 +1,6 @@
-#include "test_data_structures.h"
 #include <stdlib.h>
 #include <check.h>
+#include "test_data_structures.h"
 
 int main(void)
 {
