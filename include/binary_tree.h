@@ -1,13 +1,11 @@
 #include <methods_interface.h>
 
-struct binary_tree
-{
+struct binary_tree {
 	struct binary_tree_node *root;
 	struct methods_interface *interface;
 };
 
-struct binary_tree_node
-{
+struct binary_tree_node {
 	void *data;
 	struct binary_tree_node *left;
 	struct binary_tree_node *right;

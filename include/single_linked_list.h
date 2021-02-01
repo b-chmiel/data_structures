@@ -2,16 +2,14 @@
 #include <stdbool.h>
 #include <methods_interface.h>
 
-struct single_linked_list
-{
-        struct node *root;
-        struct methods_interface *interface;
+struct single_linked_list {
+	struct node *root;
+	struct methods_interface *interface;
 };
 
-struct node
-{
-        void *data;
-        struct node *next;
+struct node {
+	void *data;
+	struct node *next;
 };
 
 struct single_linked_list *init(struct methods_interface *interface);

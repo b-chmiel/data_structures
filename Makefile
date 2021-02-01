@@ -23,7 +23,7 @@ DEBUG_FLAGS = -g -Wall -Wextra -I$(HDR_DIR)
 PROFILE_FLAGS = -fprofile-arcs -ftest-coverage
 
 
-.PHONY: clean valgrind valgrind-v test coverage
+.PHONY: clean valgrind valgrind-v test coverage format
 
 	
 $(LIB_NAME):
@@ -50,6 +50,9 @@ valgrind: test_src
 
 valgrind-v: test_src
 	valgrind --tool=memcheck -v --leak-check=full --show-reachable=yes ./build/test_src
+
+format:
+	clang-format -i include/*.h src/*.c test/*.c test/*.h
 
 clean:
 	-rm -rf $(OUT_DIR) $(COV_DIR)
