@@ -16,12 +16,13 @@ single_linked_list_init(struct methods_interface *interface)
 	return result;
 }
 
-void add(struct single_linked_list **list, void *data)
+void single_linked_list_add(struct single_linked_list **list, void *data)
 {
-	add_at(list, -1, data);
+	single_linked_list_add_at(list, -1, data);
 }
 
-void add_many(struct single_linked_list **list, int number_of_args, ...)
+void single_linked_list_add_many(struct single_linked_list **list,
+				 int number_of_args, ...)
 {
 	if (number_of_args <= 0)
 		return;
@@ -30,14 +31,16 @@ void add_many(struct single_linked_list **list, int number_of_args, ...)
 	va_start(arg_pointer, number_of_args);
 
 	do {
-		add_at(list, -1, va_arg(arg_pointer, void *));
+		single_linked_list_add_at(list, -1,
+					  va_arg(arg_pointer, void *));
 		number_of_args--;
 	} while (number_of_args > 0);
 
 	va_end(arg_pointer);
 }
 
-void add_at(struct single_linked_list **list, int index, void *data)
+void single_linked_list_add_at(struct single_linked_list **list, int index,
+			       void *data)
 {
 	struct single_linked_list_node **head = &((*list)->root);
 	struct single_linked_list_node *to_insert =
@@ -75,7 +78,7 @@ void add_at(struct single_linked_list **list, int index, void *data)
 	to_insert->next = curr;
 }
 
-void *get_at(struct single_linked_list *list, int index)
+void *single_linked_list_get_at(struct single_linked_list *list, int index)
 {
 	if (index < 0) {
 		return NULL;
@@ -177,7 +180,7 @@ static void merge_sort_rec(struct single_linked_list_node **head,
 	merge_sorted(head, first, second, comparator);
 }
 
-void merge_sort(struct single_linked_list **list)
+void single_linked_list_merge_sort(struct single_linked_list **list)
 {
 	struct single_linked_list_node **head = &((*list)->root);
 	int (*comparator)(const void *, const void *) =
@@ -185,7 +188,8 @@ void merge_sort(struct single_linked_list **list)
 	merge_sort_rec(head, comparator);
 }
 
-bool delete_by_content(struct single_linked_list **list, void *data)
+bool single_linked_list_delete_by_content(struct single_linked_list **list,
+					  void *data)
 {
 	struct single_linked_list_node *prev = NULL;
 	struct single_linked_list_node *curr = (*list)->root;
@@ -221,7 +225,8 @@ bool delete_by_content(struct single_linked_list **list, void *data)
 	return true;
 }
 
-bool delete_by_index(struct single_linked_list **list, int index)
+bool single_linked_list_delete_by_index(struct single_linked_list **list,
+					int index)
 {
 	if (index < 0)
 		return false;
@@ -250,7 +255,7 @@ bool delete_by_index(struct single_linked_list **list, int index)
 	return true;
 }
 
-void free_list(struct single_linked_list *list)
+void single_linked_list_free(struct single_linked_list *list)
 {
 	struct single_linked_list_node *temp;
 	struct single_linked_list_node *head = list->root;
@@ -271,13 +276,13 @@ void free_list(struct single_linked_list *list)
 	free(list);
 }
 
-void clear_list(struct single_linked_list **list)
+void single_linked_list_clear(struct single_linked_list **list)
 {
 	while ((*list)->root != NULL)
-		delete_by_index(list, 0);
+		single_linked_list_delete_by_index(list, 0);
 }
 
-void print_list(struct single_linked_list_node *head)
+void single_linked_list_print(struct single_linked_list_node *head)
 {
 	struct single_linked_list_node *temp = head;
 	while (temp != NULL) {
