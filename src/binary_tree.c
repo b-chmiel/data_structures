@@ -3,12 +3,16 @@
 #include <string.h>
 #include "binary_tree.h"
 #include "comparators.h"
+#include "single_linked_list.h"
 
-struct binary_tree *binary_tree_init(struct methods_interface *interface)
+struct binary_tree *binary_tree_init(struct methods_interface *interface,
+				     size_t size)
 {
 	struct binary_tree *result = malloc(sizeof(struct binary_tree));
 	result->interface = interface;
 	result->root = NULL;
+	result->size = size;
+	result->el_cnt = 0;
 
 	return result;
 }
@@ -30,6 +34,7 @@ bool binary_tree_add(struct binary_tree **tree, void *data)
 
 	if (current == NULL) {
 		(*tree)->root = to_insert;
+		(*tree)->el_cnt++;
 		return true;
 	}
 
@@ -44,6 +49,7 @@ bool binary_tree_add(struct binary_tree **tree, void *data)
 				current = current->left;
 			} else {
 				current->left = to_insert;
+				(*tree)->el_cnt++;
 				return true;
 			}
 		} else {
@@ -51,19 +57,13 @@ bool binary_tree_add(struct binary_tree **tree, void *data)
 				current = current->right;
 			} else {
 				current->right = to_insert;
+				(*tree)->el_cnt++;
 				return true;
 			}
 		}
 	}
 
 	return false;
-}
-
-void binary_tree_free(struct binary_tree *tree)
-{
-	binary_tree_clear(&tree);
-	free(tree->interface);
-	free(tree);
 }
 
 static void clear_rec(struct binary_tree_node *node,
@@ -85,48 +85,63 @@ void binary_tree_clear(struct binary_tree **tree)
 	clear_rec((*tree)->root, (*tree)->interface->free_element);
 }
 
-static void dfs_inorder_rec(struct binary_tree_node *node)
+void binary_tree_free(struct binary_tree *tree)
+{
+	binary_tree_clear(&tree);
+	free(tree->interface);
+	free(tree);
+}
+
+static void dfs_inorder_rec(struct binary_tree_node *node,
+			    struct single_linked_list **result)
 {
 	if (node == NULL) {
 		return;
 	}
 
-	printf("%d ", node->data);
-	dfs_inorder_rec(node->left);
-	dfs_inorder_rec(node->right);
+	single_linked_list_add(result, node->data);
+	dfs_inorder_rec(node->left, result);
+	dfs_inorder_rec(node->right, result);
 }
 
-void binary_tree_dfs_inorder(struct binary_tree *tree)
+void binary_tree_dfs_inorder(struct binary_tree *tree,
+			     struct single_linked_list **result)
 {
-	dfs_inorder_rec(tree->root);
-}
-static void dfs_preorder_rec(struct binary_tree_node *node)
-{
-	if (node == NULL) {
-		return;
-	}
-
-	dfs_preorder_rec(node->left);
-	printf("%d ", node->data);
-	dfs_preorder_rec(node->right);
+	dfs_inorder_rec(tree->root, result);
 }
 
-void binary_tree_dfs_preorder(struct binary_tree *tree)
-{
-	dfs_preorder_rec(tree->root);
-}
-static void dfs_postorder_rec(struct binary_tree_node *node)
+static void dfs_preorder_rec(struct binary_tree_node *node,
+			     struct single_linked_list **result)
 {
 	if (node == NULL) {
 		return;
 	}
 
-	dfs_inorder_rec(node->left);
-	dfs_inorder_rec(node->right);
-	printf("%d ", node->data);
+	dfs_preorder_rec(node->left, result);
+	single_linked_list_add(result, node->data);
+	dfs_preorder_rec(node->right, result);
 }
 
-void binary_tree_dfs_postorder(struct binary_tree *tree)
+void binary_tree_dfs_preorder(struct binary_tree *tree,
+			      struct single_linked_list **result)
 {
-	dfs_postorder_rec(tree->root);
+	dfs_preorder_rec(tree->root, result);
+}
+
+static void dfs_postorder_rec(struct binary_tree_node *node,
+			      struct single_linked_list **result)
+{
+	if (node == NULL) {
+		return;
+	}
+
+	dfs_postorder_rec(node->left, result);
+	dfs_postorder_rec(node->right, result);
+	single_linked_list_add(result, node->data);
+}
+
+void binary_tree_dfs_postorder(struct binary_tree *tree,
+			       struct single_linked_list **result)
+{
+	dfs_postorder_rec(tree->root, result);
 }

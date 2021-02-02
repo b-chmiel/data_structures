@@ -18,7 +18,7 @@ void single_linked_list_setup(void)
 
 void single_linked_list_teardown(void)
 {
-	free_list(list);
+	single_linked_list_free(list);
 }
 
 START_TEST(test_add)
@@ -26,10 +26,11 @@ START_TEST(test_add)
 	int list_size = 50;
 
 	for (long int i = 1; i < list_size + 1; i++)
-		add(&list, (void *)i);
+		single_linked_list_add(&list, (void *)i);
 
 	for (long int i = 0; i < list_size - 1; i++)
-		ck_assert_int_eq((long int)get_at(list, i), i + 1);
+		ck_assert_int_eq((long int)single_linked_list_get_at(list, i),
+				 i + 1);
 }
 END_TEST
 
@@ -37,10 +38,11 @@ START_TEST(test_add_many)
 {
 	int list_size = 5;
 
-	add_many(&list, list_size, 0, 1, 2, 3, 4);
+	single_linked_list_add_many(&list, list_size, 0, 1, 2, 3, 4);
 
 	for (int i = 0; i < list_size; i++)
-		ck_assert_int_eq((long int)get_at(list, i), i);
+		ck_assert_int_eq((long int)single_linked_list_get_at(list, i),
+				 i);
 }
 END_TEST
 
@@ -50,10 +52,11 @@ START_TEST(test_sequential_add_at)
 	long int items[] = { 1, 3, 2, 4, 5, 22, -23 };
 
 	for (int i = 0; i < list_size; i++)
-		add_at(&list, i, (void *)items[i]);
+		single_linked_list_add_at(&list, i, (void *)items[i]);
 
 	for (int i = 0; i < list_size; i++)
-		ck_assert_int_eq((long int)get_at(list, i), items[i]);
+		ck_assert_int_eq((long int)single_linked_list_get_at(list, i),
+				 items[i]);
 }
 END_TEST
 
@@ -61,17 +64,18 @@ START_TEST(test_random_add)
 {
 	int list_size = 7;
 
-	add_at(&list, 0, (void *)1);
-	add_at(&list, 5, (void *)2);
-	add_at(&list, 3, (void *)3);
-	add_at(&list, 6, (void *)4);
-	add_at(&list, 2, (void *)5);
-	add_at(&list, 2, (void *)6);
-	add_at(&list, 1, (void *)7);
+	single_linked_list_add_at(&list, 0, (void *)1);
+	single_linked_list_add_at(&list, 5, (void *)2);
+	single_linked_list_add_at(&list, 3, (void *)3);
+	single_linked_list_add_at(&list, 6, (void *)4);
+	single_linked_list_add_at(&list, 2, (void *)5);
+	single_linked_list_add_at(&list, 2, (void *)6);
+	single_linked_list_add_at(&list, 1, (void *)7);
 
 	int result[] = { 1, 7, 2, 6, 5, 3, 4 };
 	for (int i = 0; i < list_size; i++)
-		ck_assert_int_eq((long int)get_at(list, i), result[i]);
+		ck_assert_int_eq((long int)single_linked_list_get_at(list, i),
+				 result[i]);
 }
 END_TEST
 
@@ -82,15 +86,16 @@ START_TEST(test_merge_sort_1)
 				     2,	 16, 98, 45, 8,	 48, 25, 26, 13 };
 
 	for (unsigned long i = 0; i < sizeof(to_sort) / sizeof(to_sort[0]); i++)
-		add(&list, (void *)to_sort[i]);
+		single_linked_list_add(&list, (void *)to_sort[i]);
 
-	merge_sort(&list);
+	single_linked_list_merge_sort(&list);
 	const long int result[] = { 2,	5,  8,	10, 13, 16, 24, 25, 26,
 				    27, 28, 41, 45, 47, 48, 49, 50, 57,
 				    58, 66, 67, 68, 70, 76, 85, 94, 98 };
 
 	for (unsigned long i = 0; i < sizeof(result) / sizeof(result[0]); i++)
-		ck_assert_int_eq((long int)get_at(list, i), result[i]);
+		ck_assert_int_eq((long int)single_linked_list_get_at(list, i),
+				 result[i]);
 }
 END_TEST
 
@@ -117,9 +122,9 @@ START_TEST(test_merge_sort_2)
 	};
 
 	for (unsigned long i = 0; i < sizeof(to_sort) / sizeof(to_sort[0]); i++)
-		add(&list, (void *)to_sort[i]);
+		single_linked_list_add(&list, (void *)to_sort[i]);
 
-	merge_sort(&list);
+	single_linked_list_merge_sort(&list);
 	const long int result[] = {
 		-100, -99, -98, -97, -96, -95, -94, -93, -92, -91, -90, -89,
 		-88,  -87, -86, -85, -84, -83, -82, -81, -80, -79, -78, -77,
@@ -141,19 +146,20 @@ START_TEST(test_merge_sort_2)
 	};
 
 	for (unsigned long i = 0; i < sizeof(result) / sizeof(result[0]); i++)
-		ck_assert((long int)get_at(list, i) == result[i]);
+		ck_assert((long int)single_linked_list_get_at(list, i) ==
+			  result[i]);
 }
 END_TEST
 
 START_TEST(test_get_element)
 {
 	int list_size = 7;
-	ck_assert(get_at(list, -1) == NULL);
+	ck_assert(single_linked_list_get_at(list, -1) == NULL);
 
 	for (long int i = 0; i < list_size; i++)
-		add_at(&list, i, (void *)i);
+		single_linked_list_add_at(&list, i, (void *)i);
 
-	ck_assert(get_at(list, 9) == NULL);
+	ck_assert(single_linked_list_get_at(list, 9) == NULL);
 }
 END_TEST
 
@@ -162,17 +168,18 @@ START_TEST(test_delete_by_content)
 	int list_size = 10;
 
 	for (long int i = 0; i < list_size; i++)
-		add(&list, (void *)i);
+		single_linked_list_add(&list, (void *)i);
 
-	ck_assert(delete_by_content(&list, (void *)0));
-	ck_assert(delete_by_content(&list, (void *)4));
-	ck_assert(delete_by_content(&list, (void *)9));
-	ck_assert(!delete_by_content(&list, (void *)112));
+	ck_assert(single_linked_list_delete_by_content(&list, (void *)0));
+	ck_assert(single_linked_list_delete_by_content(&list, (void *)4));
+	ck_assert(single_linked_list_delete_by_content(&list, (void *)9));
+	ck_assert(!single_linked_list_delete_by_content(&list, (void *)112));
 
 	int result[] = { 1, 2, 3, 5, 6, 7, 8 };
 
 	for (int i = 0; i < list_size - 3; i++)
-		ck_assert_int_eq((long int)get_at(list, i), result[i]);
+		ck_assert_int_eq((long int)single_linked_list_get_at(list, i),
+				 result[i]);
 }
 END_TEST
 
@@ -181,17 +188,18 @@ START_TEST(test_delete_by_index)
 	int list_size = 10;
 
 	for (long int i = 0; i < list_size; i++)
-		add(&list, (void *)i);
+		single_linked_list_add(&list, (void *)i);
 
-	ck_assert(delete_by_index(&list, 0));
-	ck_assert(delete_by_index(&list, 4));
-	ck_assert(delete_by_index(&list, 7));
-	ck_assert(!delete_by_index(&list, 112));
+	ck_assert(single_linked_list_delete_by_index(&list, 0));
+	ck_assert(single_linked_list_delete_by_index(&list, 4));
+	ck_assert(single_linked_list_delete_by_index(&list, 7));
+	ck_assert(!single_linked_list_delete_by_index(&list, 112));
 
 	int result[] = { 1, 2, 3, 4, 6, 7, 8 };
 
 	for (int i = 0; i < list_size - 3; i++)
-		ck_assert((long int)get_at(list, i) == result[i]);
+		ck_assert((long int)single_linked_list_get_at(list, i) ==
+			  result[i]);
 }
 END_TEST
 
@@ -200,11 +208,11 @@ START_TEST(test_clear_list)
 	int list_size = 10;
 
 	for (long int i = 0; i < list_size; i++)
-		add(&list, (void *)i);
+		single_linked_list_add(&list, (void *)i);
 
-	clear_list(&list);
+	single_linked_list_clear(&list);
 
-	ck_assert(get_at(list, 0) == NULL);
+	ck_assert(single_linked_list_get_at(list, 0) == NULL);
 }
 END_TEST
 
