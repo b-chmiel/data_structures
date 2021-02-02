@@ -3,16 +3,17 @@
 #include "methods_interface.h"
 
 struct single_linked_list {
-	struct node *root;
+	struct single_linked_list_node *root;
 	struct methods_interface *interface;
 };
 
-struct node {
+struct single_linked_list_node {
 	void *data;
-	struct node *next;
+	struct single_linked_list_node *next;
 };
 
-struct single_linked_list *init(struct methods_interface *interface);
+struct single_linked_list *
+single_linked_list_init(struct methods_interface *interface);
 
 void add(struct single_linked_list **list, void *data);
 
@@ -32,4 +33,4 @@ void free_list(struct single_linked_list *list);
 
 void clear_list(struct single_linked_list **list);
 
-void print_list(struct node *head);
+void print_list(struct single_linked_list_node *head);

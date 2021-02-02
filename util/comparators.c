@@ -1,3 +1,5 @@
+#include <stdio.h>
+
 int compare_int(const void *item1, const void *item2)
 {
 	const long int i1 = *((long int *)item1);

@@ -5,7 +5,8 @@
 #include "single_linked_list.h"
 #include "comparators.h"
 
-struct single_linked_list *init(struct methods_interface *interface)
+struct single_linked_list *
+single_linked_list_init(struct methods_interface *interface)
 {
 	struct single_linked_list *result =
 		malloc(sizeof(struct single_linked_list));
@@ -38,8 +39,9 @@ void add_many(struct single_linked_list **list, int number_of_args, ...)
 
 void add_at(struct single_linked_list **list, int index, void *data)
 {
-	struct node **head = &((*list)->root);
-	struct node *to_insert = malloc(sizeof(struct node));
+	struct single_linked_list_node **head = &((*list)->root);
+	struct single_linked_list_node *to_insert =
+		malloc(sizeof(struct single_linked_list_node));
 	to_insert->data = data;
 	to_insert->next = NULL;
 
@@ -48,8 +50,8 @@ void add_at(struct single_linked_list **list, int index, void *data)
 		return;
 	}
 
-	struct node *prev = NULL;
-	struct node *curr = *head;
+	struct single_linked_list_node *prev = NULL;
+	struct single_linked_list_node *curr = *head;
 	int position = 0;
 
 	while (position != index && curr != NULL) {
@@ -79,7 +81,7 @@ void *get_at(struct single_linked_list *list, int index)
 		return NULL;
 	}
 
-	struct node *temp = list->root;
+	struct single_linked_list_node *temp = list->root;
 
 	while (temp != NULL && index > 0) {
 		temp = temp->next;
@@ -93,11 +95,12 @@ void *get_at(struct single_linked_list *list, int index)
 	return temp->data;
 }
 
-static void split_into_two(struct node *head, struct node **first,
-			   struct node **second)
+static void split_into_two(struct single_linked_list_node *head,
+			   struct single_linked_list_node **first,
+			   struct single_linked_list_node **second)
 {
-	struct node *slow = head;
-	struct node *fast = head;
+	struct single_linked_list_node *slow = head;
+	struct single_linked_list_node *fast = head;
 
 	while (fast != NULL) {
 		fast = fast->next;
@@ -112,14 +115,15 @@ static void split_into_two(struct node *head, struct node **first,
 	*first = head;
 }
 
-static void merge_sorted(struct node **head, struct node *first,
-			 struct node *second,
+static void merge_sorted(struct single_linked_list_node **head,
+			 struct single_linked_list_node *first,
+			 struct single_linked_list_node *second,
 			 int (*comparator)(const void *, const void *))
 {
-	*head = malloc(sizeof(struct node));
+	*head = malloc(sizeof(struct single_linked_list_node));
 	(*head)->next = NULL;
 	(*head)->data = NULL;
-	struct node *head_tail = *head;
+	struct single_linked_list_node *head_tail = *head;
 	int (*compare_items)(const void *, const void *);
 
 	if (comparator == NULL)
@@ -151,19 +155,19 @@ static void merge_sorted(struct node **head, struct node *first,
 		head_tail->next = NULL;
 	}
 
-	struct node *tmp = *head;
+	struct single_linked_list_node *tmp = *head;
 	*head = tmp->next;
 	free(tmp);
 }
 
-static void merge_sort_rec(struct node **head,
+static void merge_sort_rec(struct single_linked_list_node **head,
 			   int (*comparator)(const void *, const void *))
 {
 	if (*head == NULL || (*head)->next == NULL)
 		return;
 
-	struct node *first = NULL;
-	struct node *second = NULL;
+	struct single_linked_list_node *first = NULL;
+	struct single_linked_list_node *second = NULL;
 
 	split_into_two(*head, &first, &second);
 
@@ -175,7 +179,7 @@ static void merge_sort_rec(struct node **head,
 
 void merge_sort(struct single_linked_list **list)
 {
-	struct node **head = &((*list)->root);
+	struct single_linked_list_node **head = &((*list)->root);
 	int (*comparator)(const void *, const void *) =
 		(*list)->interface->compare;
 	merge_sort_rec(head, comparator);
@@ -183,8 +187,8 @@ void merge_sort(struct single_linked_list **list)
 
 bool delete_by_content(struct single_linked_list **list, void *data)
 {
-	struct node *prev = NULL;
-	struct node *curr = (*list)->root;
+	struct single_linked_list_node *prev = NULL;
+	struct single_linked_list_node *curr = (*list)->root;
 	int (*compare)(const void *, const void *) =
 		(*list)->interface->compare;
 
@@ -222,8 +226,8 @@ bool delete_by_index(struct single_linked_list **list, int index)
 	if (index < 0)
 		return false;
 
-	struct node *prev = NULL;
-	struct node *curr = (*list)->root;
+	struct single_linked_list_node *prev = NULL;
+	struct single_linked_list_node *curr = (*list)->root;
 
 	while (curr != NULL && index > 0) {
 		prev = curr;
@@ -248,8 +252,8 @@ bool delete_by_index(struct single_linked_list **list, int index)
 
 void free_list(struct single_linked_list *list)
 {
-	struct node *temp;
-	struct node *head = list->root;
+	struct single_linked_list_node *temp;
+	struct single_linked_list_node *head = list->root;
 	if (list->interface->free_element != NULL) {
 		while (head != NULL) {
 			temp = head;
@@ -273,9 +277,9 @@ void clear_list(struct single_linked_list **list)
 		delete_by_index(list, 0);
 }
 
-void print_list(struct node *head)
+void print_list(struct single_linked_list_node *head)
 {
-	struct node *temp = head;
+	struct single_linked_list_node *temp = head;
 	while (temp != NULL) {
 		printf("%ld ", (long int)temp->data);
 		temp = temp->next;
