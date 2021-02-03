@@ -28,9 +28,11 @@ START_TEST(test_add)
 	for (long int i = 1; i < list_size + 1; i++)
 		single_linked_list_add(&list, (void *)i);
 
-	for (long int i = 0; i < list_size - 1; i++)
-		ck_assert_int_eq((long int)single_linked_list_get_at(list, i),
+	for (long int i = 0; i < list_size - 1; i++) {
+		ck_assert_int_eq((long int)single_linked_list_get_at(list, 0),
 				 i + 1);
+		single_linked_list_delete_by_index(&list, 0);
+	}
 }
 END_TEST
 
@@ -40,9 +42,11 @@ START_TEST(test_add_many)
 
 	single_linked_list_add_many(&list, list_size, 0, 1, 2, 3, 4);
 
-	for (int i = 0; i < list_size; i++)
-		ck_assert_int_eq((long int)single_linked_list_get_at(list, i),
+	for (int i = 0; i < list_size; i++) {
+		ck_assert_int_eq((long int)single_linked_list_get_at(list, 0),
 				 i);
+		single_linked_list_delete_by_index(&list, 0);
+	}
 }
 END_TEST
 
@@ -54,9 +58,11 @@ START_TEST(test_sequential_add_at)
 	for (int i = 0; i < list_size; i++)
 		single_linked_list_add_at(&list, i, (void *)items[i]);
 
-	for (int i = 0; i < list_size; i++)
-		ck_assert_int_eq((long int)single_linked_list_get_at(list, i),
+	for (int i = 0; i < list_size; i++) {
+		ck_assert_int_eq((long int)single_linked_list_get_at(list, 0),
 				 items[i]);
+		single_linked_list_delete_by_index(&list, 0);
+	}
 }
 END_TEST
 
@@ -73,9 +79,11 @@ START_TEST(test_random_add)
 	single_linked_list_add_at(&list, 1, (void *)7);
 
 	int result[] = { 1, 7, 2, 6, 5, 3, 4 };
-	for (int i = 0; i < list_size; i++)
-		ck_assert_int_eq((long int)single_linked_list_get_at(list, i),
+	for (int i = 0; i < list_size; i++) {
+		ck_assert_int_eq((long int)single_linked_list_get_at(list, 0),
 				 result[i]);
+		single_linked_list_delete_by_index(&list, 0);
+	}
 }
 END_TEST
 
@@ -93,9 +101,11 @@ START_TEST(test_merge_sort_1)
 				    27, 28, 41, 45, 47, 48, 49, 50, 57,
 				    58, 66, 67, 68, 70, 76, 85, 94, 98 };
 
-	for (unsigned long i = 0; i < sizeof(result) / sizeof(result[0]); i++)
-		ck_assert_int_eq((long int)single_linked_list_get_at(list, i),
+	for (unsigned long i = 0; i < sizeof(result) / sizeof(result[0]); i++) {
+		ck_assert_int_eq((long int)single_linked_list_get_at(list, 0),
 				 result[i]);
+		single_linked_list_delete_by_index(&list, 0);
+	}
 }
 END_TEST
 
@@ -145,9 +155,11 @@ START_TEST(test_merge_sort_2)
 		92,   93,  94,	95,  96,  97,  98,  99,	 100
 	};
 
-	for (unsigned long i = 0; i < sizeof(result) / sizeof(result[0]); i++)
-		ck_assert((long int)single_linked_list_get_at(list, i) ==
-			  result[i]);
+	for (unsigned long i = 0; i < sizeof(result) / sizeof(result[0]); i++) {
+		ck_assert_int_eq((long int)single_linked_list_get_at(list, 0),
+				 result[i]);
+		single_linked_list_delete_by_index(&list, 0);
+	}
 }
 END_TEST
 
@@ -177,9 +189,11 @@ START_TEST(test_delete_by_content)
 
 	int result[] = { 1, 2, 3, 5, 6, 7, 8 };
 
-	for (int i = 0; i < list_size - 3; i++)
-		ck_assert_int_eq((long int)single_linked_list_get_at(list, i),
+	for (int i = 0; i < list_size - 3; i++) {
+		ck_assert_int_eq((long int)single_linked_list_get_at(list, 0),
 				 result[i]);
+		single_linked_list_delete_by_index(&list, 0);
+	}
 }
 END_TEST
 
@@ -197,9 +211,11 @@ START_TEST(test_delete_by_index)
 
 	int result[] = { 1, 2, 3, 4, 6, 7, 8 };
 
-	for (int i = 0; i < list_size - 3; i++)
-		ck_assert((long int)single_linked_list_get_at(list, i) ==
-			  result[i]);
+	for (int i = 0; i < list_size - 3; i++) {
+		ck_assert_int_eq((long int)single_linked_list_get_at(list, 0),
+				 result[i]);
+		single_linked_list_delete_by_index(&list, 0);
+	}
 }
 END_TEST
 
