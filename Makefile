@@ -29,11 +29,11 @@ PROFILE_FLAGS = -fprofile-arcs -ftest-coverage
 $(LIB_NAME):
 	mkdir -p $(OUT_DIR)
 	$(CC) $(DEBUG_FLAGS) -c $(SRC_DIR)/*.c -I$(UTL_DIR)
-	ar -rc build/data_structures.a *.o 
+	ar -rc build/$(LIB_NAME).a *.o 
 	rm -f *.o
 
 test_src: $(LIB_NAME)
-	$(CC) $(DEBUG_FLAGS) test/*.c util/comparators.c $(TST_LIBS) -Lbuild -l:data_structures.a -o build/test_src -I$(UTL_DIR) -I$(SRC_DIR) 
+	$(CC) $(DEBUG_FLAGS) test/*.c util/comparators.c $(TST_LIBS) -Lbuild -l:$(LIB_NAME).a -o build/test_src -I$(UTL_DIR) -I$(SRC_DIR) 
 
 test: test_src
 	./build/test_src
