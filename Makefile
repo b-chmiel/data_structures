@@ -1,4 +1,4 @@
-LIB_NAME = data_structures
+LIB_NAME = libdata_structures
 
 CC = gcc
 GCOV = gcovr
@@ -29,14 +29,14 @@ PROFILE_FLAGS = -fprofile-arcs -ftest-coverage
 $(LIB_NAME):
 	mkdir -p $(OUT_DIR)
 	$(CC) $(DEBUG_FLAGS) -c $(SRC_DIR)/*.c -I$(UTL_DIR)
-	ar -rc build/$(LIB_NAME).a *.o 
+	ar -rcs $(OUT_DIR)/$(LIB_NAME).a *.o 
 	rm -f *.o
 
 test_src: $(LIB_NAME)
-	$(CC) $(DEBUG_FLAGS) test/*.c util/comparators.c $(TST_LIBS) -Lbuild -l:$(LIB_NAME).a -o build/test_src -I$(UTL_DIR) -I$(SRC_DIR) 
+	$(CC) $(DEBUG_FLAGS) $(TST_DIR)/*.c $(UTL_DIR)/comparators.c $(TST_LIBS) -L$(OUT_DIR) -l:$(LIB_NAME).a -o $(OUT_DIR)/test_src -I$(UTL_DIR) -I$(SRC_DIR) 
 
 test: test_src
-	./build/test_src
+	./$(OUT_DIR)/test_src
 
 coverage.html: test
 	$(GCOV) $(GCOV_FLAGS) -o coverage.html
@@ -46,13 +46,13 @@ coverage.html: test
 coverage: coverage.html
 
 valgrind: test_src
-	valgrind --tool=memcheck --leak-check=full --show-reachable=yes -s ./build/test_src 
+	valgrind --tool=memcheck --leak-check=full --show-reachable=yes -s ./$(OUT_DIR)/test_src 
 
 valgrind-v: test_src
-	valgrind --tool=memcheck -v --leak-check=full --show-reachable=yes ./build/test_src
+	valgrind --tool=memcheck -v --leak-check=full --show-reachable=yes ./$(OUT_DIR)/test_src
 
 format:
-	clang-format -i util/*.[ch] src/*.[ch] test/*.[ch]
+	clang-format -i $(UTL_DIR)/*.[ch] $(SRC_DIR)/*.[ch] $(TST_DIR)/*.[ch]
 
 clean:
 	-rm -rf $(OUT_DIR) $(COV_DIR)
