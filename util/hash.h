@@ -1,0 +1,1 @@
+unsigned int hash_string(const void *key);

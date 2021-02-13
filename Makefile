@@ -33,7 +33,7 @@ $(LIB_NAME):
 	rm -f *.o
 
 test_src: $(LIB_NAME)
-	$(CC) $(DEBUG_FLAGS) $(TST_DIR)/*.c $(UTL_DIR)/comparators.c $(TST_LIBS) -L$(OUT_DIR) -l:$(LIB_NAME).a -o $(OUT_DIR)/test_src -I$(UTL_DIR) -I$(SRC_DIR) 
+	$(CC) $(DEBUG_FLAGS) $(TST_DIR)/*.c $(UTL_DIR)/*.c $(TST_LIBS) -L$(OUT_DIR) -l:$(LIB_NAME).a -o $(OUT_DIR)/test_src -I$(UTL_DIR) -I$(SRC_DIR) 
 
 test: test_src
 	./$(OUT_DIR)/test_src
