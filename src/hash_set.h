@@ -17,6 +17,8 @@ struct hash_set {
 
 struct hash_set *hash_set_init(struct methods_interface *interface, int size);
 
+struct hash_set *hash_set_quick_init(int number_of_args, ...);
+
 void hash_set_insert(struct hash_set **set, const char *key);
 
 bool hash_set_contains(struct hash_set *set, const char *key);

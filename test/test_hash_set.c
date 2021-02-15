@@ -81,6 +81,23 @@ START_TEST(test_add_no_collisions)
 }
 END_TEST
 
+START_TEST(test_quick_init)
+{
+	const int item_cnt = 5;
+	set = hash_set_quick_init(item_cnt, "a", "b", "c", "d", "e");
+
+	ck_assert(hash_set_contains(set, "a"));
+	ck_assert(hash_set_contains(set, "b"));
+	ck_assert(hash_set_contains(set, "c"));
+	ck_assert(hash_set_contains(set, "d"));
+	ck_assert(hash_set_contains(set, "e"));
+	ck_assert(!hash_set_contains(set, "f"));
+	ck_assert(hash_set_contains(set, "a"));
+
+	free(interface);
+}
+END_TEST
+
 Suite *hash_set_suite(void)
 {
 	Suite *s;
@@ -92,6 +109,7 @@ Suite *hash_set_suite(void)
 	tcase_add_test(tc_core, test_add_size_1);
 	tcase_add_test(tc_core, test_add_one_colision);
 	tcase_add_test(tc_core, test_add_no_collisions);
+	tcase_add_test(tc_core, test_quick_init);
 
 	suite_add_tcase(s, tc_core);
 	return s;

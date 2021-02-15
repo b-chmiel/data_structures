@@ -1,6 +1,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <stdbool.h>
+#include <stdarg.h>
 #include "hash_set.h"
 #include "hash.h"
 #include "methods_interface.h"
@@ -15,6 +16,35 @@ struct hash_set *hash_set_init(struct methods_interface *interface, int size)
 	for (int i = 0; i < size; i++) {
 		result->entries[i] = NULL;
 	}
+
+	return result;
+}
+
+struct hash_set *hash_set_quick_init(int number_of_args, ...)
+{
+	if (number_of_args <= 0)
+		return NULL;
+
+	const int size = number_of_args * 2;
+	struct hash_set *result;
+	struct methods_interface *interface;
+
+	interface = malloc(sizeof(struct methods_interface));
+	interface->compare = NULL;
+	interface->free_element = NULL;
+	interface->hash = hash_string;
+
+	result = hash_set_init(interface, size);
+
+	va_list arg_pointer;
+	va_start(arg_pointer, number_of_args);
+
+	do {
+		hash_set_insert(&result, va_arg(arg_pointer, char *));
+		number_of_args--;
+	} while (number_of_args > 0);
+
+	va_end(arg_pointer);
 
 	return result;
 }
