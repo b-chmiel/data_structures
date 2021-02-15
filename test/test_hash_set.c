@@ -84,7 +84,8 @@ END_TEST
 START_TEST(test_quick_init)
 {
 	const int item_cnt = 5;
-	set = hash_set_quick_init(item_cnt, "a", "b", "c", "d", "e");
+	char *items[] = { "a", "b", "c", "d", "e" };
+	set = hash_set_quick_init(items, item_cnt);
 
 	ck_assert(hash_set_contains(set, "a"));
 	ck_assert(hash_set_contains(set, "b"));
@@ -93,6 +94,38 @@ START_TEST(test_quick_init)
 	ck_assert(hash_set_contains(set, "e"));
 	ck_assert(!hash_set_contains(set, "f"));
 	ck_assert(hash_set_contains(set, "a"));
+
+	free(interface);
+}
+END_TEST
+
+START_TEST(test_quick_init_2)
+{
+	char *items[] = {
+		"ALL",	    "AND",	 "AS",	     "ASC",	  "AVG",
+		"BETWEEN",  "BYTE",	 "CHAR",     "CHARACTER", "CREATE",
+		"COUNT",    "DATE",	 "DECIMAL",  "DELETE",	  "DESC",
+		"DISTINCT", "DOUBLE",	 "DROP",     "EXISTS",	  "FALSE",
+		"FLOAT",    "FOREIGN",	 "FROM",     "GROUP",	  "BY",
+		"HAVING",   "IN",	 "INDEX",    "INSERT",	  "INTEGER",
+		"INTO",	    "IS",	 "KEY",	     "LIKE",	  "MAX",
+		"MIN",	    "NOT",	 "NULL",     "NUMERIC",	  "ON",
+		"OR",	    "ORDER",	 "BY",	     "NULL",	  "NUMERIC",
+		"TABLE",    "TEMPORARY", "TRUE",     "UPDATE",	  "UNION",
+		"UNIQUE",   "UNKNOWN",	 "UNSIGNED", "VALUES",	  "VARCHAR",
+		"VARYING",  "VIEW",	 "WHERE"
+	};
+	int item_cnt = 58;
+
+	set = hash_set_quick_init(items, item_cnt);
+
+	ck_assert(hash_set_contains(set, "WHERE"));
+	ck_assert(hash_set_contains(set, "BY"));
+	ck_assert(hash_set_contains(set, "IS"));
+	ck_assert(hash_set_contains(set, "ALL"));
+	ck_assert(hash_set_contains(set, "VIEW"));
+	ck_assert(!hash_set_contains(set, "VVVa"));
+	ck_assert(hash_set_contains(set, "AND"));
 
 	free(interface);
 }
@@ -110,6 +143,7 @@ Suite *hash_set_suite(void)
 	tcase_add_test(tc_core, test_add_one_colision);
 	tcase_add_test(tc_core, test_add_no_collisions);
 	tcase_add_test(tc_core, test_quick_init);
+	tcase_add_test(tc_core, test_quick_init_2);
 
 	suite_add_tcase(s, tc_core);
 	return s;

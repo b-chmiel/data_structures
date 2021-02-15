@@ -1,7 +1,6 @@
 #include <string.h>
 #include <stdlib.h>
 #include <stdbool.h>
-#include <stdarg.h>
 #include "hash_set.h"
 #include "hash.h"
 #include "methods_interface.h"
@@ -20,9 +19,9 @@ struct hash_set *hash_set_init(struct methods_interface *interface, int size)
 	return result;
 }
 
-struct hash_set *hash_set_quick_init(int number_of_args, ...)
+struct hash_set *hash_set_quick_init(char *words[], int number_of_args)
 {
-	if (number_of_args <= 0)
+	if (words == NULL)
 		return NULL;
 
 	const int size = number_of_args * 2;
@@ -36,20 +35,13 @@ struct hash_set *hash_set_quick_init(int number_of_args, ...)
 
 	result = hash_set_init(interface, size);
 
-	va_list arg_pointer;
-	va_start(arg_pointer, number_of_args);
-
-	do {
-		hash_set_insert(&result, va_arg(arg_pointer, char *));
-		number_of_args--;
-	} while (number_of_args > 0);
-
-	va_end(arg_pointer);
+	for (int i = 0; i < number_of_args; i++)
+		hash_set_insert(&result, words[i]);
 
 	return result;
 }
 
-void hash_set_insert(struct hash_set **set, const char *key)
+void hash_set_insert(struct hash_set **set, char *key)
 {
 	if (key == NULL) {
 		return;
@@ -58,8 +50,8 @@ void hash_set_insert(struct hash_set **set, const char *key)
 	int index = (*set)->interface->hash(key) % (*set)->size;
 	struct hash_set_entry *to_insert =
 		malloc(sizeof(struct hash_set_entry));
-	to_insert->key = malloc(sizeof(key));
-	strcpy(to_insert->key, key);
+	to_insert->key = malloc(sizeof(key) + 1);
+	strncpy(to_insert->key, key, sizeof(key) / sizeof(char));
 	to_insert->next = NULL;
 
 	if ((*set)->entries[index] == NULL) {
@@ -76,7 +68,7 @@ void hash_set_insert(struct hash_set **set, const char *key)
 	tmp->next = to_insert;
 }
 
-bool hash_set_contains(struct hash_set *set, const char *key)
+bool hash_set_contains(struct hash_set *set, char *key)
 {
 	int index = set->interface->hash(key) % set->size;
 

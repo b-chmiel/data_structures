@@ -28,7 +28,7 @@ PROFILE_FLAGS = -fprofile-arcs -ftest-coverage
 	
 $(LIB_NAME):
 	mkdir -p $(OUT_DIR)
-	$(CC) $(DEBUG_FLAGS) -c $(SRC_DIR)/*.c -I$(UTL_DIR)
+	$(CC) $(DEBUG_FLAGS) -c $(SRC_DIR)/*.c $(UTL_DIR)/*.c -I$(UTL_DIR) -I$(SRC_DIR)
 	ar -rcs $(OUT_DIR)/$(LIB_NAME).a *.o 
 	rm -f *.o
 
