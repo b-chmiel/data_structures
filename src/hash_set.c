@@ -48,10 +48,13 @@ void hash_set_insert(struct hash_set **set, char *key)
 	}
 
 	int index = (*set)->interface->hash(key) % (*set)->size;
+	size_t len = strlen(key);
 	struct hash_set_entry *to_insert =
 		malloc(sizeof(struct hash_set_entry));
-	to_insert->key = malloc(sizeof(key) + 1);
-	strncpy(to_insert->key, key, sizeof(key) / sizeof(char));
+
+	to_insert->key = malloc((len + 1) * sizeof(char));
+	strncpy(to_insert->key, key, len);
+	to_insert->key[len] = '\0';
 	to_insert->next = NULL;
 
 	if ((*set)->entries[index] == NULL) {
