@@ -5,6 +5,7 @@
 #include <stdint.h>
 #include "binary_tree.h"
 #include "single_linked_list.h"
+#include "methods_interface.h"
 
 struct methods_interface *interface;
 struct binary_tree *tree;
@@ -12,9 +13,7 @@ struct single_linked_list *result;
 
 void binary_tree_setup(void)
 {
-	interface = malloc(sizeof(struct methods_interface));
-	interface->compare = NULL;
-	interface->free_element = free;
+	interface = init_methods_interface(NULL, NULL, NULL);
 	tree = binary_tree_init(interface, sizeof(long int));
 	result = single_linked_list_init(interface);
 }
@@ -44,6 +43,7 @@ START_TEST(test_add_sequential)
 		binary_tree_add(&tree, (void *)i);
 
 	binary_tree_dfs_inorder(tree, &result);
+	ck_assert_int_eq(tree->el_cnt, tree_size);
 
 	for (long int i = 0; i < tree_size; i++) {
 		ck_assert_int_eq(i, (long int)single_linked_list_get_at(result,
@@ -73,6 +73,7 @@ START_TEST(test_add_random)
 	for (long int i = 0; i < tree_size; i++)
 		binary_tree_add(&tree, (void *)to_add[i]);
 
+	ck_assert_int_eq(tree->el_cnt, tree_size);
 	binary_tree_dfs_inorder(tree, &result);
 
 	for (long int i = 0; i < tree_size; i++) {
@@ -104,6 +105,7 @@ START_TEST(test_dfs_preorder)
 	for (long int i = 0; i < tree_size; i++)
 		binary_tree_add(&tree, (void *)to_add[i]);
 
+	ck_assert_int_eq(tree->el_cnt, tree_size);
 	binary_tree_dfs_preorder(tree, &result);
 
 	for (long int i = 0; i < tree_size; i++) {
@@ -135,6 +137,7 @@ START_TEST(test_dfs_postorder)
 	for (long int i = 0; i < tree_size; i++)
 		binary_tree_add(&tree, (void *)to_add[i]);
 
+	ck_assert_int_eq(tree->el_cnt, tree_size);
 	binary_tree_dfs_postorder(tree, &result);
 
 	for (long int i = 0; i < tree_size; i++) {

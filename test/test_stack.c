@@ -8,9 +8,7 @@ struct methods_interface *interface;
 
 void stack_setup(void)
 {
-	interface = malloc(sizeof(struct methods_interface));
-	interface->compare = compare_int;
-	interface->free_element = free;
+	interface = init_methods_interface(compare_int, free, NULL);
 	stack = stack_init(interface, sizeof(long int));
 }
 

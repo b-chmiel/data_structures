@@ -12,9 +12,8 @@ struct hash_set *hash_set_init(struct methods_interface *interface, int size)
 	result->size = size;
 	result->interface = interface;
 
-	for (int i = 0; i < size; i++) {
+	for (int i = 0; i < size; i++)
 		result->entries[i] = NULL;
-	}
 
 	return result;
 }
@@ -28,11 +27,7 @@ struct hash_set *hash_set_quick_init(char *words[], int number_of_args)
 	struct hash_set *result;
 	struct methods_interface *interface;
 
-	interface = malloc(sizeof(struct methods_interface));
-	interface->compare = NULL;
-	interface->free_element = NULL;
-	interface->hash = hash_string;
-
+	interface = init_methods_interface(NULL, NULL, NULL);
 	result = hash_set_init(interface, size);
 
 	for (int i = 0; i < number_of_args; i++)
@@ -41,49 +36,48 @@ struct hash_set *hash_set_quick_init(char *words[], int number_of_args)
 	return result;
 }
 
+static struct hash_set_entry *init_hash_set_entry(char *key)
+{
+	struct hash_set_entry *result = malloc(sizeof(struct hash_set_entry));
+	size_t len = strlen(key);
+
+	result->key = malloc((len + 1) * sizeof(char));
+	strncpy(result->key, key, len);
+	result->key[len] = '\0';
+	result->next = NULL;
+
+	return result;
+}
+
 void hash_set_insert(struct hash_set **set, char *key)
 {
-	if (key == NULL) {
+	if (key == NULL)
 		return;
-	}
 
 	int index = (*set)->interface->hash(key) % (*set)->size;
-	size_t len = strlen(key);
-	struct hash_set_entry *to_insert =
-		malloc(sizeof(struct hash_set_entry));
+	struct hash_set_entry *to_insert = init_hash_set_entry(key);
+	struct hash_set_entry *curr = (*set)->entries[index];
 
-	to_insert->key = malloc((len + 1) * sizeof(char));
-	strncpy(to_insert->key, key, len);
-	to_insert->key[len] = '\0';
-	to_insert->next = NULL;
-
-	if ((*set)->entries[index] == NULL) {
+	if (curr == NULL) {
 		(*set)->entries[index] = to_insert;
-		return;
+	} else {
+		while (curr->next != NULL)
+			curr = curr->next;
+
+		curr->next = to_insert;
 	}
-
-	struct hash_set_entry *tmp = (*set)->entries[index];
-
-	while (tmp->next != NULL) {
-		tmp = tmp->next;
-	}
-
-	tmp->next = to_insert;
 }
 
 bool hash_set_contains(struct hash_set *set, char *key)
 {
 	int index = set->interface->hash(key) % set->size;
-
-	if (set->entries[index] == NULL) {
-		return false;
-	}
-
-	if (strcmp(set->entries[index]->key, key) == 0) {
-		return true;
-	}
-
 	struct hash_set_entry *tmp = set->entries[index];
+
+	if (tmp == NULL)
+		return false;
+
+	if (strcmp(tmp->key, key) == 0)
+		return true;
 
 	while (tmp->next != NULL) {
 		if (strcmp(tmp->next->key, key) == 0)

@@ -10,10 +10,7 @@ struct methods_interface *interface;
 
 void hash_set_setup(void)
 {
-	interface = malloc(sizeof(struct methods_interface));
-	interface->compare = NULL;
-	interface->free_element = NULL;
-	interface->hash = hash_string;
+	interface = init_methods_interface(NULL, NULL, NULL);
 }
 
 void hash_set_teardown(void)

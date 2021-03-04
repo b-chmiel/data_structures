@@ -80,9 +80,8 @@ void single_linked_list_add_at(struct single_linked_list **list, int index,
 
 void *single_linked_list_get_at(struct single_linked_list *list, int index)
 {
-	if (index < 0) {
+	if (index < 0)
 		return NULL;
-	}
 
 	struct single_linked_list_node *temp = list->root;
 
@@ -91,9 +90,8 @@ void *single_linked_list_get_at(struct single_linked_list *list, int index)
 		index--;
 	}
 
-	if (temp == NULL) {
+	if (temp == NULL)
 		return NULL;
-	}
 
 	return temp->data;
 }
@@ -127,17 +125,10 @@ static void merge_sorted(struct single_linked_list_node **head,
 	(*head)->next = NULL;
 	(*head)->data = NULL;
 	struct single_linked_list_node *head_tail = *head;
-	int (*compare_items)(const void *, const void *);
-
-	if (comparator == NULL)
-		compare_items = compare_int;
-	else
-		compare_items = comparator;
 
 	while (second != NULL || first != NULL) {
 		if (first != NULL && second != NULL) {
-			if (compare_items(&(first->data), &(second->data)) >=
-			    0) {
+			if (comparator(&(first->data), &(second->data)) >= 0) {
 				head_tail->next = second;
 				head_tail = head_tail->next;
 				second = second->next;
@@ -185,6 +176,7 @@ void single_linked_list_merge_sort(struct single_linked_list **list)
 	struct single_linked_list_node **head = &((*list)->root);
 	int (*comparator)(const void *, const void *) =
 		(*list)->interface->compare;
+
 	merge_sort_rec(head, comparator);
 }
 
@@ -196,17 +188,13 @@ bool single_linked_list_delete_by_content(struct single_linked_list **list,
 	int (*compare)(const void *, const void *) =
 		(*list)->interface->compare;
 
-	if (compare == NULL)
-		compare = compare_int;
-
 	while (curr != NULL && compare(&(curr->data), &data) != 0) {
 		prev = curr;
 		curr = curr->next;
 	}
 
-	if (curr == NULL) {
+	if (curr == NULL)
 		return false;
-	}
 
 	if (prev == NULL) {
 		(*list)->root = curr->next;

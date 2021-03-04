@@ -17,24 +17,59 @@ struct binary_tree *binary_tree_init(struct methods_interface *interface,
 	return result;
 }
 
+static struct binary_tree_node *
+init_binary_tree_node(void *data, struct binary_tree_node *left,
+		      struct binary_tree_node *right)
+{
+	struct binary_tree_node *result =
+		malloc(sizeof(struct binary_tree_node));
+	result->data = data;
+	result->left = left;
+	result->right = right;
+
+	return result;
+}
+
+bool insert_node_to_left(struct binary_tree_node **current,
+			 struct binary_tree_node *to_insert, int *el_cnt)
+{
+	if ((*current)->left != NULL) {
+		*current = (*current)->left;
+		return false;
+	} else {
+		(*current)->left = to_insert;
+		(*el_cnt)++;
+		return true;
+	}
+}
+
+bool insert_node_to_right(struct binary_tree_node **current,
+			  struct binary_tree_node *to_insert, int *el_cnt)
+{
+	if ((*current)->right != NULL) {
+		*current = (*current)->right;
+		return false;
+	} else {
+		(*current)->right = to_insert;
+		(*el_cnt)++;
+		return true;
+	}
+}
+
 bool binary_tree_add(struct binary_tree **tree, void *data)
 {
+	int *el_cnt = &(*tree)->el_cnt;
 	struct binary_tree_node *current = (*tree)->root;
+	struct binary_tree_node **root = &(*tree)->root;
 	struct binary_tree_node *to_insert =
-		malloc(sizeof(struct binary_tree_node));
-	to_insert->data = data;
-	to_insert->left = NULL;
-	to_insert->right = NULL;
+		init_binary_tree_node(data, NULL, NULL);
 
 	int (*compare)(const void *, const void *) =
 		(*tree)->interface->compare;
 
-	if ((*tree)->interface->compare == NULL)
-		compare = compare_int;
-
 	if (current == NULL) {
-		(*tree)->root = to_insert;
-		(*tree)->el_cnt++;
+		*root = to_insert;
+		(*el_cnt)++;
 		return true;
 	}
 
@@ -45,21 +80,11 @@ bool binary_tree_add(struct binary_tree **tree, void *data)
 		if (cmp_result == 0) {
 			return false;
 		} else if (cmp_result < 0) {
-			if (current->left != NULL) {
-				current = current->left;
-			} else {
-				current->left = to_insert;
-				(*tree)->el_cnt++;
+			if (insert_node_to_left(&current, to_insert, el_cnt))
 				return true;
-			}
 		} else {
-			if (current->right != NULL) {
-				current = current->right;
-			} else {
-				current->right = to_insert;
-				(*tree)->el_cnt++;
+			if (insert_node_to_right(&current, to_insert, el_cnt))
 				return true;
-			}
 		}
 	}
 
@@ -69,9 +94,8 @@ bool binary_tree_add(struct binary_tree **tree, void *data)
 static void clear_rec(struct binary_tree_node *node,
 		      void (*free_element)(void *item))
 {
-	if (node == NULL) {
+	if (node == NULL)
 		return;
-	}
 
 	clear_rec(node->left, free_element);
 	clear_rec(node->right, free_element);
@@ -82,7 +106,9 @@ static void clear_rec(struct binary_tree_node *node,
 
 void binary_tree_clear(struct binary_tree **tree)
 {
-	clear_rec((*tree)->root, (*tree)->interface->free_element);
+	struct binary_tree_node **root = &(*tree)->root;
+	void (*free_element)(void *item) = (*tree)->interface->free_element;
+	clear_rec(*root, free_element);
 }
 
 void binary_tree_free(struct binary_tree *tree)
@@ -95,9 +121,8 @@ void binary_tree_free(struct binary_tree *tree)
 static void dfs_inorder_rec(struct binary_tree_node *node,
 			    struct single_linked_list **result)
 {
-	if (node == NULL) {
+	if (node == NULL)
 		return;
-	}
 
 	single_linked_list_add(result, node->data);
 	dfs_inorder_rec(node->left, result);
@@ -113,9 +138,8 @@ void binary_tree_dfs_inorder(struct binary_tree *tree,
 static void dfs_preorder_rec(struct binary_tree_node *node,
 			     struct single_linked_list **result)
 {
-	if (node == NULL) {
+	if (node == NULL)
 		return;
-	}
 
 	dfs_preorder_rec(node->left, result);
 	single_linked_list_add(result, node->data);
@@ -131,9 +155,8 @@ void binary_tree_dfs_preorder(struct binary_tree *tree,
 static void dfs_postorder_rec(struct binary_tree_node *node,
 			      struct single_linked_list **result)
 {
-	if (node == NULL) {
+	if (node == NULL)
 		return;
-	}
 
 	dfs_postorder_rec(node->left, result);
 	dfs_postorder_rec(node->right, result);

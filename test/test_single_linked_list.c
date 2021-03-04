@@ -10,9 +10,7 @@ struct single_linked_list *list;
 
 void single_linked_list_setup(void)
 {
-	interface = malloc(sizeof(struct methods_interface));
-	interface->compare = NULL;
-	interface->free_element = free;
+	interface = init_methods_interface(NULL, NULL, NULL);
 	list = single_linked_list_init(interface);
 }
 

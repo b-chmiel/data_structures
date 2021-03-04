@@ -7,4 +7,9 @@ struct methods_interface {
 	unsigned int (*hash)(const void *item);
 };
 
+struct methods_interface *
+init_methods_interface(int (*compare)(const void *item1, const void *item2),
+		       void (*free_el)(void *item),
+		       unsigned int (*hash)(const void *item));
+
 #endif
