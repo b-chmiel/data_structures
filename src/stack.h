@@ -1,6 +1,7 @@
 #ifndef STACK_DEF
 #define STACK_DEF
 
+#include <stddef.h>
 #include "methods_interface.h"
 
 struct stack {

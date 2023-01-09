@@ -4,6 +4,7 @@
 #include <limits.h>
 #include <stdint.h>
 #include "single_linked_list.h"
+#include "comparators.h"
 
 struct methods_interface *interface;
 struct single_linked_list *list;
@@ -11,8 +12,10 @@ struct single_linked_list *list;
 void single_linked_list_setup(void)
 {
 	interface = malloc(sizeof(struct methods_interface));
-	interface->compare = NULL;
+	interface->compare = compare_int;
+	interface->compare_keys = NULL;
 	interface->free_element = free;
+	interface->free_key = NULL;
 	list = single_linked_list_init(interface);
 }
 

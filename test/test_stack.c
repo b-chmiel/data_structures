@@ -10,7 +10,9 @@ void stack_setup(void)
 {
 	interface = malloc(sizeof(struct methods_interface));
 	interface->compare = compare_int;
+	interface->compare_keys = NULL;
 	interface->free_element = free;
+	interface->free_key = NULL;
 	stack = stack_init(interface, sizeof(long int));
 }
 
